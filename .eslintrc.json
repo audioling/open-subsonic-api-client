@@ -1,0 +1,4 @@
+{
+    "extends": ["@audioling/eslint-config-audioling/module.js"],
+    "root": true
+}
