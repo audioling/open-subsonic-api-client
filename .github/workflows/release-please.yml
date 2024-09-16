@@ -33,6 +33,9 @@ jobs:
             - run: bun test
               if: ${{ steps.release.outputs.release_created }}
 
+            - run: bun build
+              if: ${{ steps.release.outputs.release_created }}
+
             - uses: JS-DevTools/npm-publish@v3
               with:
                   token: ${{ secrets.NPM_TOKEN }}
