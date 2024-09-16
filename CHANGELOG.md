@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/audioling/open-subsonic-api-client/compare/v1.2.1...v1.2.2) (2024-09-16)
+
+
+### Bug Fixes
+
+* fix ci step ([b15445e](https://github.com/audioling/open-subsonic-api-client/commit/b15445e6e04dd2191c1dbfcb3159261b544b5abd))
+
 ## [1.2.1](https://github.com/audioling/open-subsonic-api-client/compare/v1.2.0...v1.2.1) (2024-09-16)
 
 
