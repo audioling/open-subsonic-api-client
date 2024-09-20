@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/audioling/open-subsonic-api-client/compare/v1.2.2...v1.3.0) (2024-09-20)
+
+
+### Features
+
+* export ts-rest helper types ([3c04d95](https://github.com/audioling/open-subsonic-api-client/commit/3c04d9588a385b21acb15716ce9f14987f304338))
+
 ## [1.2.2](https://github.com/audioling/open-subsonic-api-client/compare/v1.2.1...v1.2.2) (2024-09-16)
 
 
