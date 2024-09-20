@@ -1,4 +1,10 @@
-import type { FetchOptions as TsRestFetchOptions } from '@ts-rest/core';
+import type {
+    AppRoute,
+    ClientInferResponseBody as TsRestClientInferResponseBody,
+    FetchOptions as TsRestFetchOptions,
+    ServerInferRequest as TsRestServerInferRequest,
+    ServerInferResponses as TsRestServerInferResponses,
+} from '@ts-rest/core';
 import { initClient } from '@ts-rest/core';
 import type { CreateAxiosDefaults } from 'axios';
 import axios from 'axios';
@@ -28,6 +34,15 @@ type OpenSubsonicApiClientOptions =
     | OpenSubsonicAPIWithTokenOptions;
 
 export const openSubsonicApiContract = initOpenSubsonicContract();
+
+export type ClientInferResponseBody<
+    T extends AppRoute,
+    K extends keyof T['responses'],
+> = TsRestClientInferResponseBody<T, K>;
+
+export type ServerInferRequest<T extends AppRoute> = TsRestServerInferRequest<T>;
+
+export type ServerInferResponses<T extends AppRoute> = TsRestServerInferResponses<T>;
 
 export const initOpenSubsonicApiClient = (
     clientOptions: OpenSubsonicApiClientOptions,
