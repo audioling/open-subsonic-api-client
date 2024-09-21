@@ -171,7 +171,6 @@ export const albumSchema = z
 
 // OpenSubsonic https://opensubsonic.netlify.app/docs/responses/artistid3/
 const artistOpenSubsonicSchema = z.object({
-    artistImageUrl: z.string().optional(),
     musicBrainzId: z.string().optional(),
     roles: z.string().array().optional(),
     sortName: z.string().optional(),
@@ -180,10 +179,11 @@ const artistOpenSubsonicSchema = z.object({
 export const artistSchema = z
     .object({
         albumCount: z.number().optional(),
+        artistImageUrl: z.string().optional(),
         coverArt: z.string().optional(),
         id: z.string(),
         name: z.string(),
-        userFavorite: z.boolean().optional(),
+        starred: z.string().optional(),
         userRating: z.number().optional(),
     })
     .merge(artistOpenSubsonicSchema);
