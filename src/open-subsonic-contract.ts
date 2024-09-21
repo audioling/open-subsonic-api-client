@@ -16,6 +16,7 @@ import { getArtists } from '@/endpoints/get-artists.js';
 import { getCoverArt } from '@/endpoints/get-cover-art.js';
 import { getGenres } from '@/endpoints/get-genres.js';
 import { getLyricsBySongId } from '@/endpoints/get-lyrics-by-song-id.js';
+import { getLyrics } from '@/endpoints/get-lyrics.js';
 import { getMusicDirectory } from '@/endpoints/get-music-directory.js';
 import { getMusicFolders } from '@/endpoints/get-music-folders.js';
 import { getOpenSubsonicExtensions } from '@/endpoints/get-open-subsonic-extensions.js';
@@ -62,6 +63,7 @@ export const initOpenSubsonicContract = () => {
         getArtists,
         getCoverArt,
         getGenres,
+        getLyrics,
         getLyricsBySongId,
         getMusicDirectory,
         getMusicFolders,
