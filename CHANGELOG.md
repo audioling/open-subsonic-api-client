@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.1...v2.0.2) (2024-09-21)
+
+
+### Bug Fixes
+
+* fix artist schema ([ffdb73d](https://github.com/audioling/open-subsonic-api-client/commit/ffdb73d688977df6e6b0cd32bab0d0b4914698bc))
+
 ## [2.0.1](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.0...v2.0.1) (2024-09-21)
 
 
