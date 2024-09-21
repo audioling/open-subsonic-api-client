@@ -4,8 +4,7 @@ import { baseResponseSchema, OpenSubsonicExtensions } from '@/open-subsonic-type
 
 const c = initContract();
 
-export const getOpenSubsonicExtensions = c.query({
-    method: 'GET',
+const properties = {
     path: 'getOpenSubsonicExtensions.view',
     responses: {
         200: baseResponseSchema.extend({
@@ -19,4 +18,17 @@ export const getOpenSubsonicExtensions = c.query({
         }),
     },
     summary: 'List the OpenSubsonic extensions supported by this server.',
-});
+};
+
+export const getOpenSubsonicExtensions = {
+    get: c.query({
+        method: 'GET',
+        ...properties,
+    }),
+    post: c.mutation({
+        body: z.object({}),
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

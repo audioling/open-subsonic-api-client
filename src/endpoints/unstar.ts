@@ -4,16 +4,30 @@ import { baseResponseSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const unstar = c.query({
-    method: 'GET',
+const properties = {
     path: 'unstar.view',
-    query: z.object({
-        albumId: z.string().array().optional(),
-        artistId: z.string().array().optional(),
-        id: z.string().array().optional(),
-    }),
     responses: {
         200: baseResponseSchema,
     },
     summary: 'Attaches a star to a song, album or artist.',
+};
+
+const request = z.object({
+    albumId: z.string().array().optional(),
+    artistId: z.string().array().optional(),
+    id: z.string().array().optional(),
 });
+
+export const unstar = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

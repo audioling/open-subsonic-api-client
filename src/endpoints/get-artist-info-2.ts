@@ -4,14 +4,8 @@ import { baseResponseSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getArtistInfo2 = c.query({
-    method: 'GET',
+const properties = {
     path: 'getArtistInfo2.view',
-    query: z.object({
-        count: z.number().optional(),
-        id: z.string(),
-        includeNotPresent: z.boolean().optional(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             artistInfo: z.object({
@@ -34,4 +28,24 @@ export const getArtistInfo2 = c.query({
         }),
     },
     summary: 'Returns artist info.',
+};
+
+const request = z.object({
+    count: z.number().optional(),
+    id: z.string(),
+    includeNotPresent: z.boolean().optional(),
 });
+
+export const getArtistInfo2 = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

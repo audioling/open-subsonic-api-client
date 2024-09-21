@@ -4,12 +4,8 @@ import { artistSchema, baseResponseSchema, songSchema } from '@/open-subsonic-ty
 
 const c = initContract();
 
-export const getMusicDirectory = c.query({
-    method: 'GET',
+const properties = {
     path: 'getMusicDirectory.view',
-    query: z.object({
-        id: z.string(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             directory: z.object({
@@ -20,4 +16,22 @@ export const getMusicDirectory = c.query({
         }),
     },
     summary: 'Returns a listing of all files in a music directory.',
+};
+
+const request = z.object({
+    id: z.string(),
 });
+
+export const getMusicDirectory = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

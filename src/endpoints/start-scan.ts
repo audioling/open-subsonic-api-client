@@ -4,8 +4,7 @@ import { baseResponseSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const startScan = c.query({
-    method: 'GET',
+const properties = {
     path: 'startScan.view',
     responses: {
         200: baseResponseSchema.extend({
@@ -16,4 +15,17 @@ export const startScan = c.query({
         }),
     },
     summary: 'Initiates a rescan of the media libraries.',
-});
+};
+
+export const startScan = {
+    get: c.query({
+        method: 'GET',
+        ...properties,
+    }),
+    post: c.mutation({
+        body: z.object({}),
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

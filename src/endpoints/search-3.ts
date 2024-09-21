@@ -9,19 +9,8 @@ import {
 
 const c = initContract();
 
-export const search3 = c.query({
-    method: 'GET',
+const properties = {
     path: 'search3.view',
-    query: z.object({
-        albumCount: z.number().optional(),
-        albumOffset: z.number().optional(),
-        artistCount: z.number().optional(),
-        artistOffset: z.number().optional(),
-        musicFolderId: z.string().optional(),
-        query: z.string().optional(),
-        songCount: z.number().optional(),
-        songOffset: z.number().optional(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             searchResult3: z.object({
@@ -33,4 +22,29 @@ export const search3 = c.query({
     },
     summary:
         'Returns albums, artists and songs matching the given search criteria. Supports paging through the result.',
+};
+
+const request = z.object({
+    albumCount: z.number().optional(),
+    albumOffset: z.number().optional(),
+    artistCount: z.number().optional(),
+    artistOffset: z.number().optional(),
+    musicFolderId: z.string().optional(),
+    query: z.string().optional(),
+    songCount: z.number().optional(),
+    songOffset: z.number().optional(),
 });
+
+export const search3 = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

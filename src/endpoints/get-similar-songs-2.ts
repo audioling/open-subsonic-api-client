@@ -4,13 +4,8 @@ import { baseResponseSchema, songSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getSimilarSongs2 = c.query({
-    method: 'GET',
+const properties = {
     path: 'getSimilarSongs2.view',
-    query: z.object({
-        count: z.number().optional(),
-        id: z.string(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             similarSongs: z
@@ -21,4 +16,23 @@ export const getSimilarSongs2 = c.query({
         }),
     },
     summary: 'Returns a random collection of songs from the given artist and similar artists.',
+};
+
+const request = z.object({
+    count: z.number().optional(),
+    id: z.string(),
 });
+
+export const getSimilarSongs2 = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

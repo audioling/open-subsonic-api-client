@@ -4,12 +4,8 @@ import { albumSchema, artistSchema, baseResponseSchema } from '@/open-subsonic-t
 
 const c = initContract();
 
-export const getArtist = c.query({
-    method: 'GET',
+const properties = {
     path: 'getArtist.view',
-    query: z.object({
-        musicFolderId: z.string().optional(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             artist: z.object({
@@ -21,4 +17,22 @@ export const getArtist = c.query({
     },
     summary:
         'Returns details for an artist, including a list of albums. This method organizes music according to ID3 tags.',
+};
+
+const request = z.object({
+    musicFolderId: z.string().optional(),
 });
+
+export const getArtist = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

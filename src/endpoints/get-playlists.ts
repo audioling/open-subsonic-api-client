@@ -4,12 +4,8 @@ import { baseResponseSchema, playlistSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getPlaylists = c.query({
-    method: 'GET',
+const properties = {
     path: 'getPlaylists.view',
-    query: z.object({
-        username: z.string().optional(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             playlists: z.object({
@@ -18,4 +14,22 @@ export const getPlaylists = c.query({
         }),
     },
     summary: 'Returns all playlists a user is allowed to play.',
+};
+
+const request = z.object({
+    username: z.string().optional(),
 });
+
+export const getPlaylists = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

@@ -4,8 +4,7 @@ import { baseResponseSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getScanStatus = c.query({
-    method: 'GET',
+const properties = {
     path: 'getScanStatus.view',
     responses: {
         200: baseResponseSchema.extend({
@@ -16,4 +15,17 @@ export const getScanStatus = c.query({
         }),
     },
     summary: 'Returns the current status for media library scanning.',
-});
+};
+
+export const getScanStatus = {
+    get: c.query({
+        method: 'GET',
+        ...properties,
+    }),
+    post: c.mutation({
+        body: z.object({}),
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

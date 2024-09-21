@@ -4,12 +4,8 @@ import { baseResponseSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getLyricsBySongId = c.query({
-    method: 'GET',
+const properties = {
     path: 'getLyricsBySongId.view',
-    query: z.object({
-        id: z.string(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             lyricsList: z
@@ -36,4 +32,24 @@ export const getLyricsBySongId = c.query({
     },
     summary:
         'Retrieves all structured lyrics from the server for a given song. The lyrics can come from embedded tags (SYLT/USLT), LRC file/text file, or any other external source.',
+};
+
+const request = z.object({
+    id: z.string(),
 });
+
+export const getLyricsBySongId = {
+    v1: {
+        get: c.query({
+            method: 'GET',
+            query: request,
+            ...properties,
+        }),
+        post: c.mutation({
+            body: request,
+            contentType: 'application/x-www-form-urlencoded',
+            method: 'POST',
+            ...properties,
+        }),
+    },
+};

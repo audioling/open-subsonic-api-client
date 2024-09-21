@@ -4,12 +4,8 @@ import { baseResponseSchema, playlistSchema, songSchema } from '@/open-subsonic-
 
 const c = initContract();
 
-export const getPlaylist = c.query({
-    method: 'GET',
+const properties = {
     path: 'getPlaylist.view',
-    query: z.object({
-        id: z.string(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             playlist: playlistSchema.extend({
@@ -18,4 +14,22 @@ export const getPlaylist = c.query({
         }),
     },
     summary: 'Returns a listing of files in a saved playlist.',
+};
+
+const request = z.object({
+    id: z.string(),
 });
+
+export const getPlaylist = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

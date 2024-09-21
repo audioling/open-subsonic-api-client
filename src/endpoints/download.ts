@@ -3,14 +3,32 @@ import { z } from 'zod';
 
 const c = initContract();
 
-export const download = c.query({
-    method: 'GET',
+const properties = {
     path: 'download',
-    query: z.object({
-        id: z.string(),
-    }),
     responses: {
         200: z.string(),
     },
     summary: 'Downloads a given media file.',
+};
+
+const request = z.object({
+    id: z
+        .string()
+        .describe(
+            'Returns binary data on success, or an XML document on error (in which case the HTTP content type will start with “text/xml”).',
+        ),
 });
+
+export const download = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

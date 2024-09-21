@@ -4,8 +4,7 @@ import { baseResponseSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getMusicFolders = c.query({
-    method: 'GET',
+const properties = {
     path: 'getMusicFolders.view',
     responses: {
         200: baseResponseSchema.extend({
@@ -20,4 +19,17 @@ export const getMusicFolders = c.query({
         }),
     },
     summary: 'Returns all configured top-level music folders.',
-});
+};
+
+export const getMusicFolders = {
+    get: c.query({
+        method: 'GET',
+        ...properties,
+    }),
+    post: c.mutation({
+        body: z.object({}),
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

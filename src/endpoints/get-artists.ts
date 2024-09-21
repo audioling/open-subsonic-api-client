@@ -4,12 +4,8 @@ import { artistSchema, baseResponseSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getArtists = c.query({
-    method: 'GET',
+const properties = {
     path: 'getArtists.view',
-    query: z.object({
-        musicFolderId: z.string().optional(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             artists: z.object({
@@ -24,4 +20,22 @@ export const getArtists = c.query({
         }),
     },
     summary: 'Returns all artists.',
+};
+
+const request = z.object({
+    musicFolderId: z.string().optional(),
 });
+
+export const getArtists = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

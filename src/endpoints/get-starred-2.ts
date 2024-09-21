@@ -9,12 +9,8 @@ import {
 
 const c = initContract();
 
-export const getStarred2 = c.query({
-    method: 'GET',
+const properties = {
     path: 'getStarred2.view',
-    query: z.object({
-        musicFolderId: z.string().optional(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             starred2: z
@@ -27,4 +23,22 @@ export const getStarred2 = c.query({
         }),
     },
     summary: 'Returns starred songs, albums and artists.',
+};
+
+const request = z.object({
+    musicFolderId: z.string().optional(),
 });
+
+export const getStarred2 = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};

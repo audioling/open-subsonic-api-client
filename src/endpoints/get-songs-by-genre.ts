@@ -4,15 +4,8 @@ import { baseResponseSchema, songSchema } from '@/open-subsonic-types.js';
 
 const c = initContract();
 
-export const getSongsByGenre = c.query({
-    method: 'GET',
+const properties = {
     path: 'getSongsByGenre.view',
-    query: z.object({
-        count: z.number().optional(),
-        genre: z.string(),
-        musicFolderId: z.string().optional(),
-        offset: z.number().optional(),
-    }),
     responses: {
         200: baseResponseSchema.extend({
             songs: z
@@ -23,4 +16,25 @@ export const getSongsByGenre = c.query({
         }),
     },
     summary: 'Returns songs in a given genre.',
+};
+
+const request = z.object({
+    count: z.number().optional(),
+    genre: z.string(),
+    musicFolderId: z.string().optional(),
+    offset: z.number().optional(),
 });
+
+export const getSongsByGenre = {
+    get: c.query({
+        method: 'GET',
+        query: request,
+        ...properties,
+    }),
+    post: c.mutation({
+        body: request,
+        contentType: 'application/x-www-form-urlencoded',
+        method: 'POST',
+        ...properties,
+    }),
+};
