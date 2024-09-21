@@ -38,6 +38,7 @@ import { startScan } from '@/endpoints/start-scan.js';
 import { stream } from '@/endpoints/stream.js';
 import { unstar } from '@/endpoints/unstar.js';
 import { updatePlaylist } from '@/endpoints/update-playlist.js';
+import { updateShare } from '@/endpoints/update-share.js';
 import { updateUser } from '@/endpoints/update-user.js';
 
 const c = initContract();
@@ -83,6 +84,7 @@ export const initOpenSubsonicContract = () => {
         stream,
         unstar,
         updatePlaylist,
+        updateShare,
         updateUser,
     });
 };
