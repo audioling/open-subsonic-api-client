@@ -8,10 +8,8 @@ const properties = {
     path: 'getArtist.view',
     responses: {
         200: baseResponseSchema.extend({
-            artist: z.object({
-                artist: artistSchema.extend({
-                    album: z.array(albumSchema),
-                }),
+            artist: artistSchema.extend({
+                album: z.array(albumSchema),
             }),
         }),
     },
