@@ -17,6 +17,7 @@ import { getOpenSubsonicExtensions } from '@/endpoints/get-open-subsonic-extensi
 import { getPlaylist } from '@/endpoints/get-playlist.js';
 import { getPlaylists } from '@/endpoints/get-playlists.js';
 import { getRandomSongs } from '@/endpoints/get-random-songs.js';
+import { getScanStatus } from '@/endpoints/get-scan-status.js';
 import { getSimilarSongs2 } from '@/endpoints/get-similar-songs-2.js';
 import { getSong } from '@/endpoints/get-song.js';
 import { getSongsByGenre } from '@/endpoints/get-songs-by-genre.js';
@@ -53,6 +54,7 @@ export const initOpenSubsonicContract = () => {
         getPlaylist,
         getPlaylists,
         getRandomSongs,
+        getScanStatus,
         getSimilarSongs2,
         getSong,
         getSongsByGenre,
