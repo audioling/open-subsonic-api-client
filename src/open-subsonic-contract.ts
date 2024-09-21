@@ -26,6 +26,7 @@ import { getSongsByGenre } from '@/endpoints/get-songs-by-genre.js';
 import { getStarred2 } from '@/endpoints/get-starred-2.js';
 import { getTopSongs } from '@/endpoints/get-top-songs.js';
 import { getUser } from '@/endpoints/get-user.js';
+import { getUsers } from '@/endpoints/get-users.js';
 import { ping } from '@/endpoints/ping.js';
 import { scrobble } from '@/endpoints/scrobble.js';
 import { search3 } from '@/endpoints/search-3.js';
@@ -67,6 +68,7 @@ export const initOpenSubsonicContract = () => {
         getStarred2,
         getTopSongs,
         getUser,
+        getUsers,
         ping,
         scrobble,
         search3,
