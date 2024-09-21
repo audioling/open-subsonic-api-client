@@ -33,6 +33,7 @@ import { scrobble } from '@/endpoints/scrobble.js';
 import { search3 } from '@/endpoints/search-3.js';
 import { setRating } from '@/endpoints/set-rating.js';
 import { star } from '@/endpoints/star.js';
+import { startScan } from '@/endpoints/start-scan.js';
 import { stream } from '@/endpoints/stream.js';
 import { unstar } from '@/endpoints/unstar.js';
 import { updatePlaylist } from '@/endpoints/update-playlist.js';
@@ -76,6 +77,7 @@ export const initOpenSubsonicContract = () => {
         search3,
         setRating,
         star,
+        startScan,
         stream,
         unstar,
         updatePlaylist,
