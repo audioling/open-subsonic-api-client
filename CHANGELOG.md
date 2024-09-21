@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.0...v2.0.1) (2024-09-21)
+
+
+### Bug Fixes
+
+* fix response type of getArtist ([3280f8d](https://github.com/audioling/open-subsonic-api-client/commit/3280f8dd2e90ad7fbab7dc62ba6bfef82f6f2c6e))
+
 ## [2.0.0](https://github.com/audioling/open-subsonic-api-client/compare/v1.3.0...v2.0.0) (2024-09-21)
 
 
