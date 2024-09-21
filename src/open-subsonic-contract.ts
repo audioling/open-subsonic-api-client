@@ -6,6 +6,7 @@ import { getAlbumInfo2 } from '@/endpoints/get-album-info-2.js';
 import { getAlbumList2 } from '@/endpoints/get-album-list-2.js';
 import { getAlbum } from '@/endpoints/get-album.js';
 import { getArtistInfo2 } from '@/endpoints/get-artist-info-2.js';
+import { getArtist } from '@/endpoints/get-artist.js';
 import { getArtists } from '@/endpoints/get-artists.js';
 import { getCoverArt } from '@/endpoints/get-cover-art.js';
 import { getGenres } from '@/endpoints/get-genres.js';
@@ -40,6 +41,7 @@ export const initOpenSubsonicContract = () => {
         getAlbum,
         getAlbumInfo2,
         getAlbumList2,
+        getArtist,
         getArtistInfo2,
         getArtists,
         getCoverArt,
