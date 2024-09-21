@@ -4,6 +4,7 @@ import { createPlaylist } from '@/endpoints/create-playlist.js';
 import { createShare } from '@/endpoints/create-share.js';
 import { createUser } from '@/endpoints/create-user.js';
 import { deletePlaylist } from '@/endpoints/delete-playlist.js';
+import { deleteShare } from '@/endpoints/delete-share.js';
 import { deleteUser } from '@/endpoints/delete-user.js';
 import { download } from '@/endpoints/download.js';
 import { getAlbumInfo2 } from '@/endpoints/get-album-info-2.js';
@@ -50,6 +51,7 @@ export const initOpenSubsonicContract = () => {
         createShare,
         createUser,
         deletePlaylist,
+        deleteShare,
         deleteUser,
         download,
         getAlbum,
