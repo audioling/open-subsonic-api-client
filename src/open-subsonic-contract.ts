@@ -2,6 +2,7 @@ import { initContract } from '@ts-rest/core';
 import { createPlaylist } from '@/endpoints/create-playlist.js';
 import { createUser } from '@/endpoints/create-user.js';
 import { deletePlaylist } from '@/endpoints/delete-playlist.js';
+import { deleteUser } from '@/endpoints/delete-user.js';
 import { download } from '@/endpoints/download.js';
 import { getAlbumInfo2 } from '@/endpoints/get-album-info-2.js';
 import { getAlbumList2 } from '@/endpoints/get-album-list-2.js';
@@ -40,6 +41,7 @@ export const initOpenSubsonicContract = () => {
         createPlaylist,
         createUser,
         deletePlaylist,
+        deleteUser,
         download,
         getAlbum,
         getAlbumInfo2,
