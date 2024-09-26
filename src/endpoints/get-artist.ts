@@ -18,7 +18,7 @@ const properties = {
 };
 
 const request = z.object({
-    musicFolderId: z.string().optional(),
+    id: z.string(),
 });
 
 export const getArtist = {
