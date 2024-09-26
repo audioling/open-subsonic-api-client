@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.2...v2.0.3) (2024-09-26)
+
+
+### Bug Fixes
+
+* fix request schema for getArtist ([5cd6f10](https://github.com/audioling/open-subsonic-api-client/commit/5cd6f10017257842852a5a346d0ce339276ac073))
+
 ## [2.0.2](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.1...v2.0.2) (2024-09-21)
 
 
