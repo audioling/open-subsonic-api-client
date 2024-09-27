@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.3...v2.0.4) (2024-09-27)
+
+
+### Bug Fixes
+
+* fix starred value on album response schema ([a8b3553](https://github.com/audioling/open-subsonic-api-client/commit/a8b35532113c6dc924e07e743ea00b8752471578))
+
 ## [2.0.3](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.2...v2.0.3) (2024-09-26)
 
 
