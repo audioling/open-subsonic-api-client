@@ -154,6 +154,7 @@ const albumOpenSubsonicSchema = z.object({
 export const albumSchema = z
     .object({
         artist: z.string(),
+        artistId: z.string().optional(),
         coverArt: z.string(),
         created: z.string(),
         duration: z.number(),
@@ -161,6 +162,7 @@ export const albumSchema = z
         id: z.string(),
         name: z.string(),
         playCount: z.number(),
+        played: z.string().optional(),
         song: z.array(songSchema).optional(),
         songCount: z.number(),
         starred: z.string().optional(),
