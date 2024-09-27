@@ -163,7 +163,7 @@ export const albumSchema = z
         playCount: z.number(),
         song: z.array(songSchema).optional(),
         songCount: z.number(),
-        starred: z.boolean().optional(),
+        starred: z.string().optional(),
         userRating: z.number().optional(),
         year: z.number(),
     })
