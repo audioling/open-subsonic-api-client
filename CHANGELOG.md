@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.5](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.4...v2.0.5) (2024-09-27)
+
+
+### Bug Fixes
+
+* add missing fields in album schema ([c6a843c](https://github.com/audioling/open-subsonic-api-client/commit/c6a843c7148d5a2fd19e5286fe9b1cdc08fb5730))
+
 ## [2.0.4](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.3...v2.0.4) (2024-09-27)
 
 
