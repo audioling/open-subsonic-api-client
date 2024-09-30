@@ -9,7 +9,7 @@ const properties = {
     responses: {
         200: baseResponseSchema.extend({
             genres: z.object({
-                genre: genreSchema.array(),
+                genre: genreSchema.array().optional(),
             }),
         }),
     },

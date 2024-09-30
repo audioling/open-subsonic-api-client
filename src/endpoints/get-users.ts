@@ -8,7 +8,7 @@ const properties = {
     path: 'getUsers.view',
     responses: {
         200: baseResponseSchema.extend({
-            users: userSchema.array(),
+            users: userSchema.array().optional(),
         }),
     },
     summary:

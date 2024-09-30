@@ -9,7 +9,7 @@ const properties = {
     responses: {
         200: baseResponseSchema.extend({
             albumList2: z.object({
-                album: albumSchema.omit({ song: true }).array(),
+                album: albumSchema.omit({ song: true }).array().optional(),
             }),
         }),
     },

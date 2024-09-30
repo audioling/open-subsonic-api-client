@@ -9,7 +9,7 @@ const properties = {
     responses: {
         200: baseResponseSchema.extend({
             randomSongs: z.object({
-                song: songSchema.array(),
+                song: songSchema.array().optional(),
             }),
         }),
     },

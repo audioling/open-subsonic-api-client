@@ -9,7 +9,7 @@ const properties = {
     responses: {
         200: baseResponseSchema.extend({
             playlists: z.object({
-                playlist: z.array(playlistSchema),
+                playlist: playlistSchema.array().optional(),
             }),
         }),
     },
