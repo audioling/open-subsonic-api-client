@@ -108,7 +108,7 @@ export const initOpenSubsonicApiClient = (
                     params: {
                         c: clientName,
                         f: 'json',
-                        v: '1.16.0',
+                        v: '1.16.1',
                         ...params,
                         ...authParams,
                     },
