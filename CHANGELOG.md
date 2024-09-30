@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.6](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.5...v2.0.6) (2024-09-30)
+
+
+### Bug Fixes
+
+* handle potential undefined objects on response ([c29f7ec](https://github.com/audioling/open-subsonic-api-client/commit/c29f7ec9a1b9453fd50fd0e3cc3ad4aa1ddb97c0))
+
 ## [2.0.5](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.4...v2.0.5) (2024-09-27)
 
 
