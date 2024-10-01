@@ -1,8 +1,7 @@
 import { z } from 'zod';
 import { albumId3Schema } from '@/responses/album-id3.js';
 
-export const artistSchema = z.object({
-    album: albumId3Schema.array().optional(),
+const schema = z.object({
     artistImageUrl: z.string().optional(),
     averageRating: z.number().optional(),
     id: z.string(),
@@ -10,3 +9,16 @@ export const artistSchema = z.object({
     starred: z.string().optional(),
     userRating: z.number().optional(),
 });
+
+export const artistSchema = {
+    os: {
+        '1': schema.extend({
+            album: albumId3Schema.os['1'].array().optional(),
+        }),
+    },
+    ss: {
+        '1.16.1': schema.extend({
+            album: albumId3Schema.ss['1.16.1'].array().optional(),
+        }),
+    },
+};

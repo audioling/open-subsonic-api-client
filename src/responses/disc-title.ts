@@ -1,8 +1,10 @@
 import { z } from 'zod';
 
-const discTitleOpenSubsonicSchema = z.object({
-    disc: z.number(),
-    title: z.string(),
-});
-
-export const discTitleSchema = z.object({}).merge(discTitleOpenSubsonicSchema);
+export const discTitleSchema = {
+    os: {
+        '1': z.object({
+            disc: z.number(),
+            title: z.string(),
+        }),
+    },
+};

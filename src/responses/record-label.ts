@@ -4,4 +4,8 @@ const recordLabelOpenSubsonicSchema = z.object({
     name: z.string(),
 });
 
-export const recordLabelSchema = z.object({}).merge(recordLabelOpenSubsonicSchema);
+export const recordLabelSchema = {
+    os: {
+        '1': recordLabelOpenSubsonicSchema,
+    },
+};

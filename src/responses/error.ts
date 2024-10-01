@@ -10,7 +10,11 @@ import { z } from 'zod';
 // 60	The trial period for the Subsonic server is over. Please upgrade to Subsonic Premium. Visit subsonic.org for details.
 // 70	The requested data was not found.
 
-export const errorSchema = z.object({
-    code: z.number(),
-    message: z.string().optional(),
-});
+export const errorSchema = {
+    ss: {
+        '1.16.1': z.object({
+            code: z.number(),
+            message: z.string().optional(),
+        }),
+    },
+};

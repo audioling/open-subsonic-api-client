@@ -1,6 +1,10 @@
 import { z } from 'zod';
-import { genreSchema } from '@/open-subsonic-types.js';
+import { genreSchema } from '@/responses/genre.js';
 
-export const genresSchema = z.object({
-    genre: genreSchema.array().optional(),
-});
+export const genresSchema = {
+    ss: {
+        '1.16.1': z.object({
+            genre: genreSchema.ss['1.16.1'].array().optional(),
+        }),
+    },
+};

@@ -1,6 +1,10 @@
 import { z } from 'zod';
-import { userSchema } from '@/open-subsonic-types.js';
+import { userSchema } from '@/responses/user.js';
 
-export const usersSchema = z.object({
-    user: userSchema.array(),
-});
+export const usersSchema = {
+    ss: {
+        '1.16.1': z.object({
+            user: userSchema.ss['1.16.1'].array(),
+        }),
+    },
+};

@@ -1,6 +1,10 @@
 import { z } from 'zod';
 
-export const openSubsonicExtensionSchema = z.object({
-    name: z.string(),
-    versions: z.number().array(),
-});
+export const openSubsonicExtensionSchema = {
+    os: {
+        '1': z.object({
+            name: z.string(),
+            versions: z.number().array(),
+        }),
+    },
+};
