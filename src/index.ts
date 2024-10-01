@@ -11,7 +11,7 @@ import axios from 'axios';
 import qs from 'qs';
 import { type z } from 'zod';
 import { initOpenSubsonicContract } from '@/open-subsonic-contract.js';
-import type { baseResponse } from '@/open-subsonic-types.js';
+import type { subsonicResponseSchema } from '@/responses/subsonic-response.js';
 import { parsePath } from '@/utils.js';
 
 interface OpenSubsonicAPIOptions {
@@ -101,7 +101,9 @@ export const initOpenSubsonicApiClient = (
             }
 
             try {
-                const result = await axiosClient.request<z.infer<typeof baseResponse>>({
+                const result = await axiosClient.request<
+                    z.infer<(typeof subsonicResponseSchema.ss)['1.16.1']>
+                >({
                     data: body,
                     headers,
                     method: method,
