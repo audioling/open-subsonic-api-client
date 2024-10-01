@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.6...v3.0.0) (2024-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* add versioned endpoints
+
+### Bug Fixes
+
+* replace api version 1.16.0 -&gt; 1.16.1 ([3f88d03](https://github.com/audioling/open-subsonic-api-client/commit/3f88d0349f06f61fbf7b2f919b8e2d37fea2d537))
+
+
+### Code Refactoring
+
+* add versioned endpoints ([b764521](https://github.com/audioling/open-subsonic-api-client/commit/b7645211b698bf6985db8ce1a25211ee16aea556))
+
 ## [2.0.6](https://github.com/audioling/open-subsonic-api-client/compare/v2.0.5...v2.0.6) (2024-09-30)
 
 
