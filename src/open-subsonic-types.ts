@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-export const emptyParameters = z.object({});
+export const emptyRequestSchema = z.object({});
+
+export const emptyResponseSchema = z.object({});
 
 export const baseAttributes = z.object({
     openSubsonic: z.string().optional(),
@@ -24,4 +26,12 @@ export enum OpenSubsonicExtensions {
     HTTP_FORM_POST = 'formPost', // https://opensubsonic.netlify.app/docs/extensions/formpost/
     SONG_LYRICS = 'songLyrics', // https://opensubsonic.netlify.app/docs/extensions/songlyrics/
     TRANSCODE_OFFSET = 'transcodeOffset', // https://opensubsonic.netlify.app/docs/extensions/transcodeoffset/
+}
+
+export enum SubsonicApiVersions {
+    'SS.1.16.1' = '1.16.1',
+}
+
+export enum OpenSubsonicApiVersions {
+    'OS.1' = '1',
 }
