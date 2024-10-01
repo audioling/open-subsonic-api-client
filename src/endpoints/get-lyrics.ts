@@ -1,40 +1,23 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
-
-const c = initContract();
-
-const properties = {
-    path: 'getLyrics.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            lyrics: z
-                .object({
-                    artist: z.string(),
-                    title: z.string(),
-                    value: z.string(),
-                })
-                .optional(),
-        }),
-    },
-    summary: 'Searches for and returns lyrics for a given song.',
-};
+import { lyricsSchema } from '@/responses/lyrics.js';
+import { createEndpoint } from '@/utils.js';
 
 const request = z.object({
     artist: z.string().optional(),
     title: z.string().optional(),
 });
 
-export const getLyrics = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+export const getLyrics = createEndpoint(
+    {
+        path: 'getLyrics.view',
+        request: { default: request },
+        response: {
+            default: lyricsSchema.ss['1.16.1'],
+        },
+        summary: 'Searches for and returns lyrics for a given song.',
+    },
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

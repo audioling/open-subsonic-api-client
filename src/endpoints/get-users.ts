@@ -1,29 +1,22 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema, userSchema } from '@/open-subsonic-types.js';
+import { emptyRequestSchema } from '@/open-subsonic-types.js';
+import { usersSchema } from '@/responses/users.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getUsers.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            users: userSchema.array().optional(),
-        }),
+export const getUsers = createEndpoint(
+    {
+        path: 'getUsers.view',
+        request: { default: emptyRequestSchema },
+        response: {
+            default: z.object({
+                users: usersSchema.ss['1.16.1'],
+            }),
+        },
+        summary:
+            'Get details about all users, including which authorization roles and folder access they have. Only users with admin privileges are allowed to call this method.',
     },
-    summary:
-        'Get details about all users, including which authorization roles and folder access they have. Only users with admin privileges are allowed to call this method.',
-};
-
-export const getUsers = {
-    get: c.query({
-        method: 'GET',
-        ...properties,
-    }),
-    post: c.mutation({
-        body: z.object({}),
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

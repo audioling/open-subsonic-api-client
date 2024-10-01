@@ -1,37 +1,27 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyResponseSchema } from '@/open-subsonic-types.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'ping.view',
-    responses: {
-        200: baseResponseSchema,
+export const ping = createEndpoint(
+    {
+        path: 'ping.view',
+        request: {
+            default: z.object({
+                c: z.string(),
+                f: z.string(),
+                p: z.string().optional(),
+                s: z.string().optional(),
+                t: z.string().optional(),
+                u: z.string().optional(),
+                v: z.string(),
+            }),
+        },
+        response: {
+            default: emptyResponseSchema,
+        },
     },
-    summary: 'Used to test connectivity with the server.',
-};
-
-const request = z.object({
-    c: z.string(),
-    f: z.string(),
-    p: z.string().optional(),
-    s: z.string().optional(),
-    t: z.string().optional(),
-    u: z.string(),
-    v: z.string(),
-});
-
-export const ping = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

@@ -1,33 +1,22 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyResponseSchema } from '@/open-subsonic-types.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'unstar.view',
-    responses: {
-        200: baseResponseSchema,
+export const unstar = createEndpoint(
+    {
+        path: '/unstar',
+        request: {
+            default: z.object({
+                albumId: z.string().array().optional(),
+                artistId: z.string().array().optional(),
+                id: z.string().array().optional(),
+            }),
+        },
+        response: { default: emptyResponseSchema },
+        summary: 'Attaches a star to a song, album or artist.',
     },
-    summary: 'Attaches a star to a song, album or artist.',
-};
-
-const request = z.object({
-    albumId: z.string().array().optional(),
-    artistId: z.string().array().optional(),
-    id: z.string().array().optional(),
-});
-
-export const unstar = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

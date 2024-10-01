@@ -1,37 +1,29 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { artistSchema, baseResponseSchema, songSchema } from '@/open-subsonic-types.js';
-
-const c = initContract();
-
-const properties = {
-    path: 'getMusicDirectory.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            directory: z.object({
-                child: z.array(songSchema.or(artistSchema)),
-                id: z.string(),
-                name: z.string(),
-            }),
-        }),
-    },
-    summary: 'Returns a listing of all files in a music directory.',
-};
+import { directorySchema } from '@/responses/directory.js';
+import { createEndpoint } from '@/utils.js';
 
 const request = z.object({
     id: z.string(),
 });
 
-export const getMusicDirectory = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+export const getMusicDirectory = createEndpoint(
+    {
+        path: 'getMusicDirectory.view',
+        request: { default: request },
+        response: {
+            default: z.object({
+                directory: directorySchema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    directory: directorySchema.os['1'],
+                }),
+            },
+        },
+        summary: 'Returns a listing of all files in a music directory.',
+    },
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

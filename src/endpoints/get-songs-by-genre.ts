@@ -1,40 +1,31 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema, songSchema } from '@/open-subsonic-types.js';
+import { songsByGenreSchema } from '@/responses/songs-by-genre.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getSongsByGenre.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            songs: z
-                .object({
-                    song: songSchema.array(),
-                })
-                .optional(),
-        }),
+export const getSongsByGenre = createEndpoint(
+    {
+        path: 'getSongsByGenre.view',
+        request: {
+            default: z.object({
+                count: z.number().optional(),
+                genre: z.string(),
+                musicFolderId: z.string().optional(),
+                offset: z.number().optional(),
+            }),
+        },
+        response: {
+            default: z.object({
+                songs: songsByGenreSchema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    songs: songsByGenreSchema.os['1'],
+                }),
+            },
+        },
     },
-    summary: 'Returns songs in a given genre.',
-};
-
-const request = z.object({
-    count: z.number().optional(),
-    genre: z.string(),
-    musicFolderId: z.string().optional(),
-    offset: z.number().optional(),
-});
-
-export const getSongsByGenre = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

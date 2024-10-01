@@ -1,29 +1,22 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema, userSchema } from '@/open-subsonic-types.js';
+import { emptyRequestSchema } from '@/open-subsonic-types.js';
+import { userSchema } from '@/responses/user.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getUser.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            user: userSchema,
-        }),
+export const getUser = createEndpoint(
+    {
+        path: 'getUser.view',
+        request: { default: emptyRequestSchema },
+        response: {
+            default: z.object({
+                user: userSchema.ss['1.16.1'],
+            }),
+        },
+        summary:
+            'Get details about a given user, including which authorization roles and folder access it has. Can be used to enable/disable certain features in the client, such as jukebox control.',
     },
-    summary:
-        'Get details about a given user, including which authorization roles and folder access it has. Can be used to enable/disable certain features in the client, such as jukebox control.',
-};
-
-export const getUser = {
-    get: c.query({
-        method: 'GET',
-        ...properties,
-    }),
-    post: c.mutation({
-        body: z.object({}),
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

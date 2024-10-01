@@ -1,31 +1,20 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyRequestSchema } from '@/open-subsonic-types.js';
+import { scanStatusSchema } from '@/responses/scan-status.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getScanStatus.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            scanStatus: z.object({
-                count: z.number(),
-                scanning: z.boolean(),
+export const getScanStatus = createEndpoint(
+    {
+        path: 'getScanStatus.view',
+        request: { default: emptyRequestSchema },
+        response: {
+            default: z.object({
+                scanStatus: scanStatusSchema.ss['1.16.1'],
             }),
-        }),
+        },
     },
-    summary: 'Returns the current status for media library scanning.',
-};
-
-export const getScanStatus = {
-    get: c.query({
-        method: 'GET',
-        ...properties,
-    }),
-    post: c.mutation({
-        body: z.object({}),
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

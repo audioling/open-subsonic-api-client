@@ -1,30 +1,21 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema, genreSchema } from '@/open-subsonic-types.js';
+import { emptyRequestSchema } from '@/open-subsonic-types.js';
+import { genresSchema } from '@/responses/genres.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getGenres.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            genres: z.object({
-                genre: genreSchema.array().optional(),
+export const getGenres = createEndpoint(
+    {
+        path: 'getGenres.view',
+        request: { default: emptyRequestSchema },
+        response: {
+            default: z.object({
+                genres: genresSchema.ss['1.16.1'],
             }),
-        }),
+        },
+        summary: 'Returns all genres.',
     },
-    summary: 'Returns all genres.',
-};
-
-export const getGenres = {
-    get: c.query({
-        method: 'GET',
-        ...properties,
-    }),
-    post: c.mutation({
-        body: z.object({}),
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

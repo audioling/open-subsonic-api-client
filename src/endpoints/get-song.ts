@@ -1,33 +1,29 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema, songSchema } from '@/open-subsonic-types.js';
+import { childSchema } from '@/responses/child.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getSong.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            song: songSchema,
-        }),
+export const getSong = createEndpoint(
+    {
+        path: 'getSong.view',
+        request: {
+            default: z.object({
+                id: z.string(),
+            }),
+        },
+        response: {
+            default: z.object({
+                song: childSchema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    song: childSchema.os['1'],
+                }),
+            },
+        },
+        summary: 'Returns details for a song.',
     },
-    summary: 'Returns details for a song.',
-};
-
-const request = z.object({
-    id: z.string(),
-});
-
-export const getSong = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

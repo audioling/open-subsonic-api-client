@@ -1,41 +1,28 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { artistSchema, baseResponseSchema } from '@/open-subsonic-types.js';
-
-const c = initContract();
-
-const properties = {
-    path: 'getArtists.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            artists: z.object({
-                ignoredArticles: z.string(),
-                index: z
-                    .object({
-                        artist: z.array(artistSchema),
-                        name: z.string(),
-                    })
-                    .array(),
-            }),
-        }),
-    },
-    summary: 'Returns all artists.',
-};
+import { artistsId3Schema } from '@/responses/artists-id3.js';
+import { createEndpoint } from '@/utils.js';
 
 const request = z.object({
     musicFolderId: z.string().optional(),
 });
 
-export const getArtists = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+export const getArtists = createEndpoint(
+    {
+        path: '/rest/getArtists.view',
+        request: { default: request },
+        response: {
+            default: z.object({
+                artists: artistsId3Schema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    artists: artistsId3Schema.os['1'],
+                }),
+            },
+        },
+    },
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

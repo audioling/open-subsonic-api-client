@@ -1,34 +1,21 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema, OpenSubsonicExtensions } from '@/open-subsonic-types.js';
+import { emptyRequestSchema } from '@/open-subsonic-types.js';
+import { openSubsonicExtensionSchema } from '@/responses/open-subsonic-extension.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getOpenSubsonicExtensions.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            openSubsonicExtensions: z
-                .object({
-                    name: z.nativeEnum(OpenSubsonicExtensions),
-                    versions: z.number().array(),
-                })
-                .array()
-                .optional(),
-        }),
+export const getOpenSubsonicExtensions = createEndpoint(
+    {
+        path: 'getOpenSubsonicExtensions.view',
+        request: { default: emptyRequestSchema },
+        response: {
+            default: z.object({
+                openSubsonicExtensions: openSubsonicExtensionSchema.os['1'].array(),
+            }),
+        },
+        summary: 'List the OpenSubsonic extensions supported by this server.',
     },
-    summary: 'List the OpenSubsonic extensions supported by this server.',
-};
-
-export const getOpenSubsonicExtensions = {
-    get: c.query({
-        method: 'GET',
-        ...properties,
-    }),
-    post: c.mutation({
-        body: z.object({}),
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': false },
+    },
+);

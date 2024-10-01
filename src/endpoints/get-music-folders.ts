@@ -1,35 +1,21 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyRequestSchema } from '@/open-subsonic-types.js';
+import { musicFoldersSchema } from '@/responses/music-folders.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getMusicFolders.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            musicFolders: z.object({
-                musicFolder: z
-                    .object({
-                        id: z.string(),
-                        name: z.string(),
-                    })
-                    .array(),
+export const getMusicFolders = createEndpoint(
+    {
+        path: 'getMusicFolders.view',
+        request: { default: emptyRequestSchema },
+        response: {
+            default: z.object({
+                musicFolders: musicFoldersSchema.ss['1.16.1'],
             }),
-        }),
+        },
+        summary: 'Returns all configured top-level music folders.',
     },
-    summary: 'Returns all configured top-level music folders.',
-};
-
-export const getMusicFolders = {
-    get: c.query({
-        method: 'GET',
-        ...properties,
-    }),
-    post: c.mutation({
-        body: z.object({}),
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

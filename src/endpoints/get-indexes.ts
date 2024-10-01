@@ -1,24 +1,6 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { artistSchema, baseResponseSchema } from '@/open-subsonic-types.js';
-
-const c = initContract();
-
-const properties = {
-    path: 'getIndexes.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            indexes: z.object({
-                ignoredArticles: z.string(),
-                index: z.object({
-                    artist: artistSchema.array(),
-                    name: z.string(),
-                }),
-            }),
-        }),
-    },
-    summary: 'Returns an indexed structure of all artists.',
-};
+import { indexesSchema } from '@/responses/indexes.js';
+import { createEndpoint } from '@/utils.js';
 
 const request = z.object({
     ifModifiedSince: z.string().optional(),
@@ -30,16 +12,24 @@ const request = z.object({
         ),
 });
 
-export const getIndexes = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+export const getIndexes = createEndpoint(
+    {
+        path: 'getIndexes.view',
+        request: { default: request },
+        response: {
+            default: z.object({
+                indexes: indexesSchema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    indexes: indexesSchema.os['1'],
+                }),
+            },
+        },
+        summary: 'Returns an indexed structure of all artists.',
+    },
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

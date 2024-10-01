@@ -1,33 +1,29 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { albumSchema, baseResponseSchema } from '@/open-subsonic-types.js';
+import { albumId3Schema } from '@/responses/album-id3.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getAlbum.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            album: albumSchema,
-        }),
+export const getAlbum = createEndpoint(
+    {
+        path: 'getAlbum.view',
+        request: {
+            default: z.object({
+                id: z.string(),
+            }),
+        },
+        response: {
+            default: z.object({
+                album: albumId3Schema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    album: albumId3Schema.os['1'],
+                }),
+            },
+        },
+        summary: 'Returns details for an album.',
     },
-    summary: 'Returns details for an album.',
-};
-
-const request = z.object({
-    id: z.string(),
-});
-
-export const getAlbum = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

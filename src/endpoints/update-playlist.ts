@@ -1,36 +1,25 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyResponseSchema } from '@/open-subsonic-types.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'updatePlaylist.view',
-    responses: {
-        200: baseResponseSchema,
+export const updatePlaylist = createEndpoint(
+    {
+        path: 'updatePlaylist.view',
+        request: {
+            default: z.object({
+                comment: z.string().optional(),
+                name: z.string().optional(),
+                playlistId: z.string(),
+                public: z.boolean().optional(),
+                songIdToAdd: z.string().array().optional(),
+                songIdToRemove: z.string().array().optional(),
+            }),
+        },
+        response: { default: emptyResponseSchema },
+        summary: 'Updates a playlist. Only the owner of a playlist is allowed to update it.',
     },
-    summary: 'Updates a playlist. Only the owner of a playlist is allowed to update it.',
-};
-
-const request = z.object({
-    comment: z.string().optional(),
-    name: z.string().optional(),
-    playlistId: z.string(),
-    public: z.boolean().optional(),
-    songIdToAdd: z.string().array().optional(),
-    songIdToRemove: z.string().array().optional(),
-});
-
-export const updatePlaylist = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

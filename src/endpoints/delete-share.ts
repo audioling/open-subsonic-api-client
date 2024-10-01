@@ -1,31 +1,20 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyResponseSchema } from '@/open-subsonic-types.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'deleteShare.view',
-    responses: {
-        200: baseResponseSchema,
+export const deleteShare = createEndpoint(
+    {
+        path: 'deleteShare.view',
+        request: {
+            default: z.object({
+                id: z.string(),
+            }),
+        },
+        response: { default: emptyResponseSchema },
+        summary: 'Deletes an existing share.',
     },
-    summary: 'Deletes an existing share.',
-};
-
-const request = z.object({
-    id: z.string(),
-});
-
-export const deleteShare = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

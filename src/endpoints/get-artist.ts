@@ -1,36 +1,30 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { albumSchema, artistSchema, baseResponseSchema } from '@/open-subsonic-types.js';
-
-const c = initContract();
-
-const properties = {
-    path: 'getArtist.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            artist: artistSchema.extend({
-                album: z.array(albumSchema),
-            }),
-        }),
-    },
-    summary:
-        'Returns details for an artist, including a list of albums. This method organizes music according to ID3 tags.',
-};
+import { artistSchema } from '@/responses/artist.js';
+import { createEndpoint } from '@/utils.js';
 
 const request = z.object({
     id: z.string(),
 });
 
-export const getArtist = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+export const getArtist = createEndpoint(
+    {
+        path: 'getArtist.view',
+        request: { default: request },
+        response: {
+            default: z.object({
+                artist: artistSchema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    artist: artistSchema.os['1'],
+                }),
+            },
+        },
+        summary:
+            'Returns details for an artist, including a list of albums. This method organizes music according to ID3 tags.',
+    },
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

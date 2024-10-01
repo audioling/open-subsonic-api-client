@@ -1,31 +1,20 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyResponseSchema } from '@/open-subsonic-types.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'deletePlaylist.view',
-    responses: {
-        200: baseResponseSchema,
+export const deletePlaylist = createEndpoint(
+    {
+        path: 'deletePlaylist.view',
+        request: {
+            default: z.object({
+                id: z.string(),
+            }),
+        },
+        response: { default: emptyResponseSchema },
+        summary: 'Deletes a saved playlist.',
     },
-    summary: 'Deletes a saved playlist.',
-};
-
-const request = z.object({
-    id: z.string(),
-});
-
-export const deletePlaylist = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

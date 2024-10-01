@@ -1,38 +1,30 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema, songSchema } from '@/open-subsonic-types.js';
+import { similarSongs2Schema } from '@/responses/similar-songs-2.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getSimilarSongs2.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            similarSongs: z
-                .object({
-                    song: songSchema.array(),
-                })
-                .optional(),
-        }),
+export const getSimilarSongs2 = createEndpoint(
+    {
+        path: 'getSimilarSongs2.view',
+        request: {
+            default: z.object({
+                count: z.number().optional(),
+                id: z.string(),
+            }),
+        },
+        response: {
+            default: z.object({
+                similarSongs: similarSongs2Schema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    similarSongs: similarSongs2Schema.os['1'],
+                }),
+            },
+        },
+        summary: 'Returns a random collection of songs from the given artist and similar artists.',
     },
-    summary: 'Returns a random collection of songs from the given artist and similar artists.',
-};
-
-const request = z.object({
-    count: z.number().optional(),
-    id: z.string(),
-});
-
-export const getSimilarSongs2 = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

@@ -1,40 +1,31 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { emptyResponseSchema } from '@/open-subsonic-types.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'scrobble.view',
-    responses: {
-        200: baseResponseSchema,
+export const scrobble = createEndpoint(
+    {
+        path: 'scrobble.view',
+        request: {
+            default: z.object({
+                id: z.string().or(z.string().array()),
+                submission: z
+                    .boolean()
+                    .optional()
+                    .describe('True for playback completed, false for in-progress'),
+                time: z
+                    .number()
+                    .or(z.number().array())
+                    .optional()
+                    .describe(
+                        'The time (in milliseconds since 1 Jan 1970) at which the song was listened to.',
+                    ),
+            }),
+        },
+        response: { default: emptyResponseSchema },
+        summary: 'Registers the local playback of one or more media files.',
     },
-    summary: 'Registers the local playback of one or more media files.',
-};
-
-const request = z.object({
-    id: z.string().or(z.string().array()),
-    submission: z
-        .boolean()
-        .optional()
-        .describe('True for playback completed, false for in-progress'),
-    time: z
-        .number()
-        .or(z.number().array())
-        .optional()
-        .describe('The time (in milliseconds since 1 Jan 1970) at which the song was listened to.'),
-});
-
-export const scrobble = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

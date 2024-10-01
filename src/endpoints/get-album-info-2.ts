@@ -1,39 +1,24 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { baseResponseSchema } from '@/open-subsonic-types.js';
+import { albumInfoSchema } from '@/responses/album-info.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getAlbumInfo2.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            albumInfo: z.object({
-                largeImageUrl: z.string().optional(),
-                mediumImageUrl: z.string().optional(),
-                musicBrainzId: z.string().optional(),
-                notes: z.string().optional(),
-                smallImageUrl: z.string().optional(),
+export const getAlbumInfo2 = createEndpoint(
+    {
+        path: 'getAlbumInfo2.view',
+        request: {
+            default: z.object({
+                id: z.string(),
             }),
-        }),
+        },
+        response: {
+            default: z.object({
+                albumInfo: albumInfoSchema.ss['1.16.1'],
+            }),
+        },
+        summary: 'Returns album info.',
     },
-    summary: 'Returns album info.',
-};
-
-const request = z.object({
-    id: z.string(),
-});
-
-export const getAlbumInfo2 = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);

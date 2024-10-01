@@ -1,44 +1,29 @@
-import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import {
-    albumSchema,
-    artistSchema,
-    baseResponseSchema,
-    songSchema,
-} from '@/open-subsonic-types.js';
+import { starred2Schema } from '@/responses/starred-2.js';
+import { createEndpoint } from '@/utils.js';
 
-const c = initContract();
-
-const properties = {
-    path: 'getStarred2.view',
-    responses: {
-        200: baseResponseSchema.extend({
-            starred2: z
-                .object({
-                    album: albumSchema.array(),
-                    artist: artistSchema.array(),
-                    song: songSchema.array(),
-                })
-                .optional(),
-        }),
+export const getStarred2 = createEndpoint(
+    {
+        path: 'getStarred2.view',
+        request: {
+            default: z.object({
+                musicFolderId: z.string().optional(),
+            }),
+        },
+        response: {
+            default: z.object({
+                starred2: starred2Schema.ss['1.16.1'],
+            }),
+            os: {
+                '1': z.object({
+                    starred2: starred2Schema.os['1'],
+                }),
+            },
+        },
+        summary: 'Returns starred songs, albums and artists.',
     },
-    summary: 'Returns starred songs, albums and artists.',
-};
-
-const request = z.object({
-    musicFolderId: z.string().optional(),
-});
-
-export const getStarred2 = {
-    get: c.query({
-        method: 'GET',
-        query: request,
-        ...properties,
-    }),
-    post: c.mutation({
-        body: request,
-        contentType: 'application/x-www-form-urlencoded',
-        method: 'POST',
-        ...properties,
-    }),
-};
+    {
+        os: { '1': true },
+        ss: { '1.16.1': true },
+    },
+);
