@@ -1,23 +1,29 @@
 import { z } from 'zod';
 import { playlistsSchema } from '@/responses/playlists.js';
-import { createEndpoint } from '@/utils.js';
+import { createEndpoint, endpointProperties } from '@/utils.js';
 
-const request = z.object({
+const properties = endpointProperties({
+    path: 'getPlaylists.view',
+    summary: 'Returns all playlists.',
+});
+
+const requestSchema = z.object({
     username: z.string().optional(),
 });
 
-export const getPlaylists = createEndpoint(
-    {
-        path: 'getPlaylists.view',
-        request: { default: request },
-        response: {
-            default: z.object({
-                playlists: playlistsSchema.ss['1.16.1'],
-            }),
-        },
-    },
-    {
-        os: { '1': true },
-        ss: { '1.16.1': true },
-    },
-);
+export const getPlaylists = {
+    ...createEndpoint.ss('SS.1.16.1', {
+        request: requestSchema,
+        response: z.object({
+            playlists: playlistsSchema.ss['1.16.1'],
+        }),
+        ...properties,
+    }),
+    ...createEndpoint.os('OS.1', {
+        request: requestSchema,
+        response: z.object({
+            playlists: playlistsSchema.ss['1.16.1'],
+        }),
+        ...properties,
+    }),
+};

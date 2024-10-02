@@ -1,3 +1,4 @@
+import type { AppRouter } from '@ts-rest/core';
 import { initContract } from '@ts-rest/core';
 import { changePassword } from '@/endpoints/change-password.js';
 import { createPlaylist } from '@/endpoints/create-playlist.js';
@@ -45,7 +46,7 @@ import { updateUser } from '@/endpoints/update-user.js';
 
 const c = initContract();
 
-export const initOpenSubsonicContract = () => {
+export const initOpenSubsonicContract = (): AppRouter => {
     return c.router({
         changePassword,
         createPlaylist,

@@ -1,20 +1,25 @@
 import { z } from 'zod';
 import { emptyResponseSchema } from '@/open-subsonic-types.js';
-import { createEndpoint } from '@/utils.js';
+import { createEndpoint, endpointProperties } from '@/utils.js';
 
-export const deleteShare = createEndpoint(
-    {
-        path: 'deleteShare.view',
-        request: {
-            default: z.object({
-                id: z.string(),
-            }),
-        },
-        response: { default: emptyResponseSchema },
-        summary: 'Deletes an existing share.',
-    },
-    {
-        os: { '1': true },
-        ss: { '1.16.1': true },
-    },
-);
+const properties = endpointProperties({
+    path: 'deleteShare.view',
+    summary: 'Deletes an existing share.',
+});
+
+const requestSchema = z.object({
+    id: z.string(),
+});
+
+export const deleteShare = {
+    ...createEndpoint.ss('SS.1.16.1', {
+        request: requestSchema,
+        response: emptyResponseSchema,
+        ...properties,
+    }),
+    ...createEndpoint.os('OS.1', {
+        request: requestSchema,
+        response: emptyResponseSchema,
+        ...properties,
+    }),
+};

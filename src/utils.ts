@@ -1,8 +1,8 @@
-import type { AppRouteMutation, AppRouteQuery } from '@ts-rest/core';
 import { initContract } from '@ts-rest/core';
 import qs from 'qs';
-import { z } from 'zod';
-import type { OpenSubsonicApiVersions, SubsonicApiVersions } from '@/open-subsonic-types.js';
+import type { ZodType } from 'zod';
+import { type AnyZodObject } from 'zod';
+import { OpenSubsonicApiVersions, SubsonicApiVersions } from '@/open-subsonic-types.js';
 import {
     baseResponseOpenSubsonicSchema,
     baseResponseSchema,
@@ -25,103 +25,151 @@ export function parsePath(fullPath: string) {
     };
 }
 
-const c = initContract();
+export const endpointProperties = (args: { path: string; summary?: string }) => {
+    return args;
+};
 
-type ZodSchema = z.AnyZodObject | z.ZodString | z.ZodNumber | z.ZodBoolean;
+type EndpointProperties<
+    TRequestSchema extends AnyZodObject,
+    TResponseSchema extends AnyZodObject,
+> = {
+    path: string;
+    request: TRequestSchema;
+    response: TResponseSchema;
+    summary?: string;
+};
 
-export const createEndpoint = (
+const createSsEndpoint = <
+    TRequestSchema extends AnyZodObject,
+    TResponseSchema extends AnyZodObject,
+>(
+    version: keyof typeof SubsonicApiVersions,
+    properties: EndpointProperties<TRequestSchema, TResponseSchema>,
+) => {
+    const c = initContract();
+
+    return {
+        ss: {
+            [SubsonicApiVersions[version]]: {
+                get: c.query({
+                    method: 'GET',
+                    query: properties.request,
+                    responses: {
+                        200: baseResponseSchema.merge(properties.response),
+                    },
+                    ...properties,
+                }),
+            },
+        },
+    };
+};
+
+const createSsEndpointExplicit = <
+    TRequestSchema extends AnyZodObject,
+    TResponseSchema extends ZodType<unknown>,
+>(
+    version: keyof typeof SubsonicApiVersions,
     properties: {
         path: string;
-        request: {
-            default: ZodSchema;
-            os?: { [key in OpenSubsonicApiVersions]?: ZodSchema };
-            ss?: { [key in SubsonicApiVersions]?: ZodSchema };
-        };
-        response: {
-            default: ZodSchema | z.ZodAny;
-            os?: { [key in OpenSubsonicApiVersions]?: ZodSchema };
-            ss?: { [key in SubsonicApiVersions]?: ZodSchema };
-        };
+        request: TRequestSchema;
+        response: TResponseSchema;
         summary?: string;
     },
-    versions: {
-        os: { [key in OpenSubsonicApiVersions]?: boolean };
-        ss: { [key in SubsonicApiVersions]?: boolean };
+) => {
+    const c = initContract();
+
+    return {
+        ss: {
+            [SubsonicApiVersions[version]]: {
+                get: c.query({
+                    method: 'GET',
+                    query: properties.request,
+                    responses: {
+                        200: properties.response,
+                    },
+                    ...properties,
+                }),
+            },
+        },
+    };
+};
+
+const createOsEndpoint = <
+    TRequestSchema extends AnyZodObject,
+    TResponseSchema extends AnyZodObject,
+>(
+    version: keyof typeof OpenSubsonicApiVersions,
+    properties: EndpointProperties<TRequestSchema, TResponseSchema>,
+) => {
+    const c = initContract();
+
+    return {
+        os: {
+            [OpenSubsonicApiVersions[version]]: {
+                get: c.query({
+                    method: 'GET',
+                    query: properties.request,
+                    responses: {
+                        200: baseResponseOpenSubsonicSchema.merge(properties.response),
+                    },
+                    ...properties,
+                }),
+                post: c.mutation({
+                    body: properties.request,
+                    contentType: 'application/x-www-form-urlencoded',
+                    method: 'POST',
+                    responses: {
+                        200: baseResponseOpenSubsonicSchema.merge(properties.response),
+                    },
+                    ...properties,
+                }),
+            },
+        },
+    };
+};
+
+const createOsEndpointExplicit = <
+    TRequestSchema extends AnyZodObject,
+    TResponseSchema extends ZodType<unknown>,
+>(
+    version: keyof typeof OpenSubsonicApiVersions,
+    properties: {
+        path: string;
+        request: TRequestSchema;
+        response: TResponseSchema;
+        summary?: string;
     },
 ) => {
-    const contractProperties = {
-        path: properties.path,
-        summary: properties.summary,
+    const c = initContract();
+
+    return {
+        os: {
+            [OpenSubsonicApiVersions[version]]: {
+                get: c.query({
+                    method: 'GET',
+                    query: properties.request,
+                    responses: {
+                        200: properties.response,
+                    },
+                    ...properties,
+                }),
+                post: c.mutation({
+                    body: properties.request,
+                    contentType: 'application/x-www-form-urlencoded',
+                    method: 'POST',
+                    responses: {
+                        200: properties.response,
+                    },
+                    ...properties,
+                }),
+            },
+        },
     };
+};
 
-    const contractSchema: {
-        os: Record<string, { get: AppRouteQuery; post: AppRouteMutation }>;
-        ss: Record<string, { get: AppRouteQuery }>;
-    } = {
-        os: {},
-        ss: {},
-    };
-
-    for (const version of Object.keys(versions.ss)) {
-        if (versions.ss[version] === false) {
-            continue;
-        }
-
-        const selectedResponse = properties.request.ss?.[version] ?? properties.request.default;
-
-        let response: ZodSchema;
-        if (selectedResponse instanceof z.ZodObject) {
-            response = baseResponseSchema.merge(selectedResponse);
-        } else {
-            response = selectedResponse;
-        }
-
-        contractSchema.ss[`v${version}`] = {
-            get: c.query({
-                method: 'GET',
-                query: properties.request.ss?.[version] ?? properties.request.default,
-                responses: {
-                    200: response,
-                },
-                ...contractProperties,
-            }),
-        };
-    }
-
-    for (const version of Object.keys(versions.os)) {
-        if (versions.os[version] === false) {
-            continue;
-        }
-
-        const selectedResponse = properties.request.os?.[version] ?? properties.request.default;
-
-        let response: ZodSchema;
-        if (selectedResponse instanceof z.ZodObject) {
-            response = baseResponseOpenSubsonicSchema.merge(selectedResponse);
-        } else {
-            response = selectedResponse;
-        }
-
-        contractSchema.os[`v${version}`] = {
-            get: c.query({
-                method: 'GET',
-                query: properties.request.os?.[version] ?? properties.request.default,
-                responses: {
-                    200: response,
-                },
-                ...contractProperties,
-            }),
-            post: c.mutation({
-                body: properties.request.os?.[version] ?? properties.request.default,
-                contentType: 'application/x-www-form-urlencoded',
-                method: 'POST',
-                responses: {
-                    200: response,
-                },
-                ...contractProperties,
-            }),
-        };
-    }
-
-    return contractSchema;
+export const createEndpoint = {
+    os: createOsEndpoint,
+    osExplicit: createOsEndpointExplicit,
+    ss: createSsEndpoint,
+    ssExplicit: createSsEndpointExplicit,
 };

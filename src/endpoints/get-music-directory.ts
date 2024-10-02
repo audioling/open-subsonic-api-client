@@ -1,29 +1,29 @@
 import { z } from 'zod';
 import { directorySchema } from '@/responses/directory.js';
-import { createEndpoint } from '@/utils.js';
+import { createEndpoint, endpointProperties } from '@/utils.js';
 
-const request = z.object({
+const properties = endpointProperties({
+    path: 'getMusicDirectory.view',
+    summary: 'Returns a listing of all files in a music directory.',
+});
+
+const requestSchema = z.object({
     id: z.string(),
 });
 
-export const getMusicDirectory = createEndpoint(
-    {
-        path: 'getMusicDirectory.view',
-        request: { default: request },
-        response: {
-            default: z.object({
-                directory: directorySchema.ss['1.16.1'],
-            }),
-            os: {
-                '1': z.object({
-                    directory: directorySchema.os['1'],
-                }),
-            },
-        },
-        summary: 'Returns a listing of all files in a music directory.',
-    },
-    {
-        os: { '1': true },
-        ss: { '1.16.1': true },
-    },
-);
+export const getMusicDirectory = {
+    ...createEndpoint.ss('SS.1.16.1', {
+        request: requestSchema,
+        response: z.object({
+            directory: directorySchema.ss['1.16.1'],
+        }),
+        ...properties,
+    }),
+    ...createEndpoint.os('OS.1', {
+        request: requestSchema,
+        response: z.object({
+            directory: directorySchema.os['1'],
+        }),
+        ...properties,
+    }),
+};

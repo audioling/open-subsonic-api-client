@@ -1,20 +1,25 @@
 import { z } from 'zod';
 import { emptyResponseSchema } from '@/open-subsonic-types.js';
-import { createEndpoint } from '@/utils.js';
+import { createEndpoint, endpointProperties } from '@/utils.js';
 
-export const deleteUser = createEndpoint(
-    {
-        path: 'deleteUser.view',
-        request: {
-            default: z.object({
-                username: z.string(),
-            }),
-        },
-        response: { default: emptyResponseSchema },
-        summary: 'Deletes an existing user.',
-    },
-    {
-        os: { '1': true },
-        ss: { '1.16.1': true },
-    },
-);
+const properties = endpointProperties({
+    path: 'deleteUser.view',
+    summary: 'Deletes an existing user.',
+});
+
+const requestSchema = z.object({
+    username: z.string(),
+});
+
+export const deleteUser = {
+    ...createEndpoint.ss('SS.1.16.1', {
+        request: requestSchema,
+        response: emptyResponseSchema,
+        ...properties,
+    }),
+    ...createEndpoint.os('OS.1', {
+        request: requestSchema,
+        response: emptyResponseSchema,
+        ...properties,
+    }),
+};

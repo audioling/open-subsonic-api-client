@@ -1,29 +1,29 @@
 import { z } from 'zod';
 import { starred2Schema } from '@/responses/starred-2.js';
-import { createEndpoint } from '@/utils.js';
+import { createEndpoint, endpointProperties } from '@/utils.js';
 
-export const getStarred2 = createEndpoint(
-    {
-        path: 'getStarred2.view',
-        request: {
-            default: z.object({
-                musicFolderId: z.string().optional(),
-            }),
-        },
-        response: {
-            default: z.object({
-                starred2: starred2Schema.ss['1.16.1'],
-            }),
-            os: {
-                '1': z.object({
-                    starred2: starred2Schema.os['1'],
-                }),
-            },
-        },
-        summary: 'Returns starred songs, albums and artists.',
-    },
-    {
-        os: { '1': true },
-        ss: { '1.16.1': true },
-    },
-);
+const properties = endpointProperties({
+    path: 'getStarred2.view',
+    summary: 'Returns starred songs, albums and artists.',
+});
+
+const requestSchema = z.object({
+    musicFolderId: z.string().optional(),
+});
+
+export const getStarred2 = {
+    ...createEndpoint.ss('SS.1.16.1', {
+        request: requestSchema,
+        response: z.object({
+            starred2: starred2Schema.ss['1.16.1'],
+        }),
+        ...properties,
+    }),
+    ...createEndpoint.os('OS.1', {
+        request: requestSchema,
+        response: z.object({
+            starred2: starred2Schema.os['1'],
+        }),
+        ...properties,
+    }),
+};

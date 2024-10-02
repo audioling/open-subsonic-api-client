@@ -1,22 +1,27 @@
 import { z } from 'zod';
 import { emptyResponseSchema } from '@/open-subsonic-types.js';
-import { createEndpoint } from '@/utils.js';
+import { createEndpoint, endpointProperties } from '@/utils.js';
 
-export const createPlaylist = createEndpoint(
-    {
-        path: 'createPlaylist.view',
-        request: {
-            default: z.object({
-                name: z.string().optional(),
-                playlistId: z.string().optional(),
-                songId: z.string().array(),
-            }),
-        },
-        response: { default: emptyResponseSchema },
-        summary: 'Creates (or updates) a playlist.',
-    },
-    {
-        os: { '1': true },
-        ss: { '1.16.1': true },
-    },
-);
+const properties = endpointProperties({
+    path: 'createPlaylist.view',
+    summary: 'Creates (or updates) a playlist.',
+});
+
+const requestSchema = z.object({
+    name: z.string().optional(),
+    playlistId: z.string().optional(),
+    songId: z.string().array(),
+});
+
+export const createPlaylist = {
+    ...createEndpoint.ss('SS.1.16.1', {
+        request: requestSchema,
+        response: emptyResponseSchema,
+        ...properties,
+    }),
+    ...createEndpoint.os('OS.1', {
+        request: requestSchema,
+        response: emptyResponseSchema,
+        ...properties,
+    }),
+};

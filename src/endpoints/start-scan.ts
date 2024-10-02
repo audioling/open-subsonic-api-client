@@ -1,18 +1,21 @@
 import { z } from 'zod';
 import { scanStatusSchema } from '@/responses/scan-status.js';
-import { createEndpoint } from '@/utils.js';
+import { createEndpoint, endpointProperties } from '@/utils.js';
 
-export const startScan = createEndpoint(
-    {
-        path: 'startScan.view',
-        request: { default: z.object({}) },
-        response: {
-            default: scanStatusSchema.ss['1.16.1'],
-        },
-        summary: 'Initiates a rescan of the media libraries.',
-    },
-    {
-        os: { '1': true },
-        ss: { '1.16.1': true },
-    },
-);
+const properties = endpointProperties({
+    path: 'startScan.view',
+    summary: 'Initiates a rescan of the media libraries.',
+});
+
+export const startScan = {
+    ...createEndpoint.ss('SS.1.16.1', {
+        request: z.object({}),
+        response: z.object({ scanStatus: scanStatusSchema.ss['1.16.1'] }),
+        ...properties,
+    }),
+    ...createEndpoint.os('OS.1', {
+        request: z.object({}),
+        response: z.object({ scanStatus: scanStatusSchema.ss['1.16.1'] }),
+        ...properties,
+    }),
+};
