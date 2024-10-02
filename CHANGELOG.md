@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.1...v3.0.2) (2024-10-02)
+
+
+### Bug Fixes
+
+* additional fix to ts-rest type inference on all endpoints ([601b405](https://github.com/audioling/open-subsonic-api-client/commit/601b405bfd337ba98ea58895639c37b9dce74246))
+
 ## [3.0.1](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.0...v3.0.1) (2024-10-02)
 
 
