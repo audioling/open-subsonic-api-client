@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.2...v3.0.3) (2024-10-02)
+
+
+### Bug Fixes
+
+* fix getAlbum response to include song ([f3f54c3](https://github.com/audioling/open-subsonic-api-client/commit/f3f54c36272a6af79d414730564d49346152e2ea))
+
 ## [3.0.2](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.1...v3.0.2) (2024-10-02)
 
 
