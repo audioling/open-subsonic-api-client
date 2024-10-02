@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { albumId3Schema } from '@/responses/album-id3.js';
+import { albumId3WithSongSchema } from '@/responses/album-id3-with-song.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
@@ -15,14 +15,14 @@ export const getAlbum = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
         response: z.object({
-            album: albumId3Schema.ss['1.16.1'],
+            album: albumId3WithSongSchema.ss['1.16.1'],
         }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            album: albumId3Schema.os['1'],
+            album: albumId3WithSongSchema.os['1'],
         }),
         ...properties,
     }),
