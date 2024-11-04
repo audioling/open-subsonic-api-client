@@ -20,6 +20,7 @@ const requestSchema = z.object({
         'frequent',
         'recent',
         'starred',
+        'highest',
         'alphabeticalByName',
         'alphabeticalByArtist',
         'byYear',
