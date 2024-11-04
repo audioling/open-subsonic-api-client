@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.3...v3.0.4) (2024-11-04)
+
+
+### Bug Fixes
+
+* add 'highest' type to getAlbumList2 ([f107eca](https://github.com/audioling/open-subsonic-api-client/commit/f107ecafbef771cd2c6ae41387e3f0a5479d0497))
+
 ## [3.0.3](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.2...v3.0.3) (2024-10-02)
 
 
