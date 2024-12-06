@@ -4,7 +4,7 @@ import { internetRadioStationSchema } from '@/responses/internet-radio-station.j
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getInternetRadioStations.view',
+    path: '/getInternetRadioStations.view',
     summary: 'Returns a list of internet radio stations.',
 });
 

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getCoverArt.view',
+    path: '/getCoverArt.view',
     summary: 'Returns the cover art for a given album or artist.',
 });
 

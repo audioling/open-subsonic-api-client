@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'setRating.view',
+    path: '/setRating.view',
     summary: 'Sets the rating for an item.',
 });
 

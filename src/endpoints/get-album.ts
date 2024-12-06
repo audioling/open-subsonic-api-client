@@ -3,7 +3,7 @@ import { albumId3WithSongSchema } from '@/responses/album-id3-with-song.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getAlbum.view',
+    path: '/getAlbum.view',
     summary: 'Returns details for an album.',
 });
 

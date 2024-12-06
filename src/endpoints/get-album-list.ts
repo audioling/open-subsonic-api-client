@@ -3,7 +3,7 @@ import { albumListSchema } from '@/responses/album-list.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getAlbumList.view',
+    path: '/getAlbumList.view',
     summary: 'Returns a list of random, newest, highest rated etc. albums.',
 });
 

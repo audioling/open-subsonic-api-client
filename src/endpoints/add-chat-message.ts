@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'addChatMessage.view',
+    path: '/addChatMessage.view',
     summary: 'Adds a message to the chat log.',
 });
 

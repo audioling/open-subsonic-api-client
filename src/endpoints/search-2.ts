@@ -3,7 +3,7 @@ import { searchResult2Schema } from '@/responses/search-result-2.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'search2.view',
+    path: '/search2.view',
     summary:
         'Returns albums, artists and songs matching the given search criteria. Supports paging through the result.',
 });

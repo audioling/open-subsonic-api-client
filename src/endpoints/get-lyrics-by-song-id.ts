@@ -3,7 +3,7 @@ import { lyricsListSchema } from '@/responses/lyrics-list.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getLyricsBySongId.view',
+    path: '/getLyricsBySongId.view',
     summary: 'Retrieves all structured lyrics from the server for a given song.',
 });
 

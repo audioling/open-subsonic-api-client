@@ -4,7 +4,7 @@ import { nowPlayingSchema } from '@/responses/now-playing.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getNowPlaying.view',
+    path: '/getNowPlaying.view',
     summary: 'Returns what is currently being played by all users.',
 });
 

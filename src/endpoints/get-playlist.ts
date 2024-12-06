@@ -3,7 +3,7 @@ import { playlistWithSongsSchema } from '@/responses/playlist-with-songs.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getPlaylist.view',
+    path: '/getPlaylist.view',
     summary: 'Returns a listing of files in a saved playlist.',
 });
 

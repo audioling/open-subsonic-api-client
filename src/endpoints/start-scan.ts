@@ -3,7 +3,7 @@ import { scanStatusSchema } from '@/responses/scan-status.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'startScan.view',
+    path: '/startScan.view',
     summary: 'Initiates a rescan of the media libraries.',
 });
 

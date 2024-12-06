@@ -4,7 +4,7 @@ import { sharesSchema } from '@/responses/shares.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getShares.view',
+    path: '/getShares.view',
     summary: 'Returns information about shared media this user is allowed to manage.',
 });
 

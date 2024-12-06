@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'savePlayQueue.view',
+    path: '/savePlayQueue.view',
     summary: 'Saves the state of the play queue for this user.',
 });
 

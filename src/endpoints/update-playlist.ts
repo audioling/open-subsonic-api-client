@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'updatePlaylist.view',
+    path: '/updatePlaylist.view',
     summary: 'Updates a playlist. Only the owner of a playlist is allowed to update it.',
 });
 

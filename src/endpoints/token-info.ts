@@ -4,7 +4,7 @@ import { tokenInfoSchema } from '@/responses/token-info.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'tokenInfo.view',
+    path: '/tokenInfo.view',
     summary: 'Returns information about an API key.',
 });
 

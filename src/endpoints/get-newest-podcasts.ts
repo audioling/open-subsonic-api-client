@@ -3,7 +3,7 @@ import { newestPodcastsSchema } from '@/responses/newest-podcasts.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getNewestPodcasts.view',
+    path: '/getNewestPodcasts.view',
     summary: 'Returns the most recently published Podcast episodes.',
 });
 

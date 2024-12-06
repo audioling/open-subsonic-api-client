@@ -4,7 +4,7 @@ import { jukeboxStatusSchema } from '@/responses/jukebox-status.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'jukeboxControl.view',
+    path: '/jukeboxControl.view',
     summary: 'Controls the jukebox, i.e., playback directly on the server’s audio hardware.',
 });
 

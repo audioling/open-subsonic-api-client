@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'createInternetRadioStation.view',
+    path: '/createInternetRadioStation.view',
     summary: 'Adds a new internet radio station.',
 });
 

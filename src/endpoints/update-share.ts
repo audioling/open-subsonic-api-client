@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'updateShare.view',
+    path: '/updateShare.view',
     summary: 'Updates the description and/or expiration date for an existing share.',
 });
 

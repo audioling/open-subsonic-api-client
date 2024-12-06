@@ -4,7 +4,7 @@ import { bookmarkSchema } from '@/responses/bookmark.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getBookmarks.view',
+    path: '/getBookmarks.view',
     summary: 'Returns all bookmarks for this user.',
 });
 

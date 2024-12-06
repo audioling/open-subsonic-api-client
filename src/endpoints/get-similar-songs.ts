@@ -3,7 +3,7 @@ import { similarSongsSchema } from '@/responses/similar-songs.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getSimilarSongs2.view',
+    path: '/getSimilarSongs2.view',
     summary: 'Returns a random collection of songs from the given artist and similar artists.',
 });
 

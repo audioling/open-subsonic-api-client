@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'scrobble.view',
+    path: '/scrobble.view',
     summary: 'Registers the local playback of one or more media files.',
 });
 

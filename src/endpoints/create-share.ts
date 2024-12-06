@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'createShare.view',
+    path: '/createShare.view',
     summary:
         'Creates a public URL that can be used by anyone to stream music or video from the Subsonic server.',
 });

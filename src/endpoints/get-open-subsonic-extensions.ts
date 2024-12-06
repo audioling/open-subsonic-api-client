@@ -4,7 +4,7 @@ import { openSubsonicExtensionSchema } from '@/responses/open-subsonic-extension
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getOpenSubsonicExtensions.view',
+    path: '/getOpenSubsonicExtensions.view',
     summary: 'List the OpenSubsonic extensions supported by this server.',
 });
 

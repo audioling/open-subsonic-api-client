@@ -3,7 +3,7 @@ import { directorySchema } from '@/responses/directory.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getMusicDirectory.view',
+    path: '/getMusicDirectory.view',
     summary: 'Returns a listing of all files in a music directory.',
 });
 

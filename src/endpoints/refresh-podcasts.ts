@@ -2,7 +2,7 @@ import { emptyRequestSchema, emptyResponseSchema } from '@/open-subsonic-types.j
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'refreshPodcasts.view',
+    path: '/refreshPodcasts.view',
     summary: 'Requests the server to check for new Podcast episodes.',
 });
 

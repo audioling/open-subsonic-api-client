@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'updateUser.view',
+    path: '/updateUser.view',
     summary: 'Updates user properties. Only the owner of a user is allowed to update it.',
 });
 

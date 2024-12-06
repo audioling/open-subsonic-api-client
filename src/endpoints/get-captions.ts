@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getCaptions.view',
+    path: '/getCaptions.view',
     summary: 'Returns captions (subtitles) for a video.',
 });
 

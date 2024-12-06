@@ -4,7 +4,7 @@ import { musicFoldersSchema } from '@/responses/music-folders.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getMusicFolders.view',
+    path: '/getMusicFolders.view',
     summary: 'Returns all configured top-level music folders.',
 });
 

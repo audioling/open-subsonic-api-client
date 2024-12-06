@@ -3,7 +3,7 @@ import { artistInfo2Schema } from '@/responses/artist-info-2.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getArtistInfo2.view',
+    path: '/getArtistInfo2.view',
     summary: 'Returns artist info.',
 });
 

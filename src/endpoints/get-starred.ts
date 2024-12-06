@@ -3,7 +3,7 @@ import { starredSchema } from '@/responses/starred.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getStarred.view',
+    path: '/getStarred.view',
     summary: 'Returns starred songs, albums and artists.',
 });
 

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'stream.view',
+    path: '/stream.view',
     summary: 'Streams a given media file.',
 });
 

@@ -4,7 +4,7 @@ import { genresSchema } from '@/responses/genres.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getGenres.view',
+    path: '/getGenres.view',
     summary: 'Returns all genres.',
 });
 

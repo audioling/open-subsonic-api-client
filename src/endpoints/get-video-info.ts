@@ -3,7 +3,7 @@ import { videoInfoSchema } from '@/responses/video-info.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getVideoInfo.view',
+    path: '/getVideoInfo.view',
     summary: 'Returns details for a video.',
 });
 

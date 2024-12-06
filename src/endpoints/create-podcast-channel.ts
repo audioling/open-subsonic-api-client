@@ -2,7 +2,7 @@ import { emptyRequestSchema, emptyResponseSchema } from '@/open-subsonic-types.j
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'createPodcastChannel.view',
+    path: '/createPodcastChannel.view',
     summary: 'Adds a new Podcast channel.',
 });
 

@@ -4,7 +4,7 @@ import { childSchema } from '@/responses/child.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getPlayQueue.view',
+    path: '/getPlayQueue.view',
     summary: 'Returns the state of the play queue for this user.',
 });
 

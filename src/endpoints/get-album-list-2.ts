@@ -3,7 +3,7 @@ import { albumList2Schema } from '@/responses/album-list-2.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getAlbumList2.view',
+    path: '/getAlbumList2.view',
     summary:
         'Returns a list of random, newest, highest rated etc. albums. Similar to getAlbumList, but organizes music according to ID3 tags.',
 });

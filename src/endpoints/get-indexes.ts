@@ -3,7 +3,7 @@ import { indexesSchema } from '@/responses/indexes.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getIndexes.view',
+    path: '/getIndexes.view',
     summary: 'Returns an indexed structure of all artists.',
 });
 

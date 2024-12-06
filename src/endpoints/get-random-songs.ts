@@ -3,7 +3,7 @@ import { randomSongsSchema } from '@/responses/random-songs.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getRandomSongs.view',
+    path: '/getRandomSongs.view',
     summary: 'Returns random songs matching the given criteria.',
 });
 

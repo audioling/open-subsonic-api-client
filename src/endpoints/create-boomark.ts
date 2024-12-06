@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'createBookmark.view',
+    path: '/createBookmark.view',
     summary: 'Creates or updates a bookmark.',
 });
 

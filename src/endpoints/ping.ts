@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'ping.view',
+    path: '/ping.view',
     summary: 'Ping Subsonic server to keep the connection alive.',
 });
 

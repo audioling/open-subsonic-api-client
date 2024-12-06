@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'deleteUser.view',
+    path: '/deleteUser.view',
     summary: 'Deletes an existing user.',
 });
 

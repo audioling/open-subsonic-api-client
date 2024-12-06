@@ -3,7 +3,7 @@ import { podcastsSchema } from '@/responses/podcasts.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getPodcasts.view',
+    path: '/getPodcasts.view',
     summary: 'Returns a list of podcasts.',
 });
 

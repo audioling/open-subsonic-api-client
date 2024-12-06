@@ -3,7 +3,7 @@ import { chatMessageSchema } from '@/responses/chat-message.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getChatMessages.view',
+    path: '/getChatMessages.view',
     summary: 'Returns the current visible (non-expired) chat messages.',
 });
 

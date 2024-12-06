@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'changePassword.view',
+    path: '/changePassword.view',
     summary:
         'Changes the password of an existing user. You can only change your own password unless you have admin privileges.',
 });

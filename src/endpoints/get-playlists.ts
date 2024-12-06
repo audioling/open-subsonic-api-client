@@ -3,7 +3,7 @@ import { playlistsSchema } from '@/responses/playlists.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getPlaylists.view',
+    path: '/getPlaylists.view',
     summary: 'Returns all playlists.',
 });
 

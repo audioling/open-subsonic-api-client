@@ -4,7 +4,7 @@ import { videosSchema } from '@/responses/videos.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getVideos.view',
+    path: '/getVideos.view',
     summary: 'Returns all video files.',
 });
 

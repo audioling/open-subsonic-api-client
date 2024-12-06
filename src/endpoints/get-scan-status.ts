@@ -4,7 +4,7 @@ import { scanStatusSchema } from '@/responses/scan-status.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getScanStatus.view',
+    path: '/getScanStatus.view',
     summary: 'Returns the current status of the music scanner.',
 });
 

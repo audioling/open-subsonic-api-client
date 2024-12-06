@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'download.view',
+    path: '/download.view',
     summary: 'Downloads a given media file.',
 });
 

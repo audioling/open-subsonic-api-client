@@ -267,7 +267,7 @@ export const initOpenSubsonicApiClient = (
                         ...authParams,
                     },
                     signal: fetchOptions?.signal as AbortSignal | undefined,
-                    url: `${baseUrl}/${api}`,
+                    url: `${baseUrl}${api}`,
                 });
 
                 return {

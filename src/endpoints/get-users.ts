@@ -4,7 +4,7 @@ import { usersSchema } from '@/responses/users.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getUsers.view',
+    path: '/getUsers.view',
     summary:
         'Get details about all users, including which authorization roles and folder access they have. Only users with admin privileges are allowed to call this method.',
 });

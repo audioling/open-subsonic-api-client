@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'unstar.view',
+    path: '/unstar.view',
     summary: 'Attaches a star to a song, album or artist.',
 });
 

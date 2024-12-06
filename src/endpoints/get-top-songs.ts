@@ -3,7 +3,7 @@ import { topSongsSchema } from '@/responses/top-songs.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getTopSongs.view',
+    path: '/getTopSongs.view',
     summary: 'Returns top songs for the given artist.',
 });
 

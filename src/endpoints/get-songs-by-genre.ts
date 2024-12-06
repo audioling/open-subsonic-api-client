@@ -3,7 +3,7 @@ import { songsByGenreSchema } from '@/responses/songs-by-genre.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getSongsByGenre.view',
+    path: '/getSongsByGenre.view',
     summary: 'Returns a list of songs in a given genre.',
 });
 

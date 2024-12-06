@@ -3,7 +3,7 @@ import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'createPlaylist.view',
+    path: '/createPlaylist.view',
     summary: 'Creates (or updates) a playlist.',
 });
 

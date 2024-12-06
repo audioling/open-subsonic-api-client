@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getAvatar.view',
+    path: '/getAvatar.view',
     summary: 'Returns the avatar (personal image) for a user.',
 });
 

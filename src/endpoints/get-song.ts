@@ -3,7 +3,7 @@ import { childSchema } from '@/responses/child.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getSong.view',
+    path: '/getSong.view',
     summary: 'Returns details for a song.',
 });
 

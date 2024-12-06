@@ -3,7 +3,7 @@ import { artistsId3Schema } from '@/responses/artists-id3.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getArtists.view',
+    path: '/getArtists.view',
     summary: 'Returns a list of all artists.',
 });
 

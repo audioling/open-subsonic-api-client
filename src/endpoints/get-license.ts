@@ -4,7 +4,7 @@ import { licenseSchema } from '@/responses/license.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getLicense.view',
+    path: '/getLicense.view',
     summary: 'Get details about the software license.',
 });
 
