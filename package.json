@@ -22,14 +22,20 @@
     ],
     "scripts": {
         "build": "tsup src/index.ts --format cjs,esm --dts --clean --sourcemap",
+        "build:openapi": "tsup src/openapi/document.ts --format esm --outDir dist-openapi && node dist-openapi/document.js",
+        "build:xsd": "tsup src/openapi/openapi-to-xsd.ts --format esm --outDir dist-openapi && node dist-openapi/openapi-to-xsd.js",
+        "generate:redoc": "bunx @redocly/cli@latest build-docs openapi3.schema.yaml --output=./docs/index.html",
         "lint": "eslint . --ext .js,.ts --fix",
         "test": "bun test"
     },
     "dependencies": {
+        "@anatine/zod-openapi": "^2.2.6",
         "@audioling/eslint-config-audioling": "^0.0.1",
         "@ts-rest/core": "^3.51.0",
+        "@ts-rest/open-api": "^3.51.0",
         "axios": "^1.7.6",
         "qs": "^6.13.0",
+        "yaml": "^2.6.1",
         "zod": "^3.23.8"
     },
     "devDependencies": {
