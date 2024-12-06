@@ -4,7 +4,8 @@ import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
     path: 'getSimilarSongs2.view',
-    summary: 'Returns a random collection of songs from the given artist and similar artists.',
+    summary:
+        'Returns a random collection of songs from the given artist and similar artists. Similar to getSimilarSongs, but organizes music according to ID3 tags.',
 });
 
 const requestSchema = z.object({

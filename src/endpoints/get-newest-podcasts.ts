@@ -1,29 +1,29 @@
 import { z } from 'zod';
-import { starred2Schema } from '@/responses/starred-2.js';
+import { newestPodcastsSchema } from '@/responses/newest-podcasts.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getStarred2.view',
-    summary:
-        'Returns starred songs, albums and artists. Similar to getStarred, but organizes music according to ID3 tags.',
+    path: 'getNewestPodcasts.view',
+    summary: 'Returns the most recently published Podcast episodes.',
 });
 
 const requestSchema = z.object({
-    musicFolderId: z.string().optional(),
+    id: z.string().optional(),
+    includeEpisodes: z.boolean().optional().default(true),
 });
 
-export const getStarred2 = {
+export const getNewestPodcasts = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
         response: z.object({
-            starred2: starred2Schema.ss['1.16.1'],
+            podcasts: newestPodcastsSchema.ss['1.16.1'],
         }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            starred2: starred2Schema.os['1'],
+            podcasts: newestPodcastsSchema.ss['1.16.1'],
         }),
         ...properties,
     }),

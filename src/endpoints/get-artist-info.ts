@@ -1,29 +1,30 @@
 import { z } from 'zod';
-import { starred2Schema } from '@/responses/starred-2.js';
+import { artistInfoSchema } from '@/responses/artist-info.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getStarred2.view',
-    summary:
-        'Returns starred songs, albums and artists. Similar to getStarred, but organizes music according to ID3 tags.',
+    path: 'getArtistInfo.view',
+    summary: 'Returns artist info.',
 });
 
 const requestSchema = z.object({
-    musicFolderId: z.string().optional(),
+    count: z.number().optional().default(20),
+    id: z.string(),
+    includeNotPresent: z.boolean().optional(),
 });
 
-export const getStarred2 = {
+export const getArtistInfo = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
         response: z.object({
-            starred2: starred2Schema.ss['1.16.1'],
+            artistInfo: artistInfoSchema.ss['1.16.1'],
         }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            starred2: starred2Schema.os['1'],
+            artistInfo: artistInfoSchema.os['1'],
         }),
         ...properties,
     }),

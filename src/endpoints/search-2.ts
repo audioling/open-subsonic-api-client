@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { searchResult3Schema } from '@/responses/search-result-3.js';
+import { searchResult2Schema } from '@/responses/search-result-2.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'search3.view',
+    path: 'search2.view',
     summary:
         'Returns albums, artists and songs matching the given search criteria. Supports paging through the result.',
 });
@@ -19,18 +19,18 @@ const requestSchema = z.object({
     songOffset: z.number().optional().default(0),
 });
 
-export const search3 = {
+export const search2 = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
         response: z.object({
-            searchResult3: searchResult3Schema.ss['1.16.1'],
+            searchResult2: searchResult2Schema.ss['1.16.1'],
         }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            searchResult3: searchResult3Schema.os['1'],
+            searchResult2: searchResult2Schema.os['1'],
         }),
         ...properties,
     }),

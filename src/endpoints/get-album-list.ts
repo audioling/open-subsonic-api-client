@@ -1,11 +1,10 @@
 import { z } from 'zod';
-import { albumList2Schema } from '@/responses/album-list-2.js';
+import { albumListSchema } from '@/responses/album-list.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getAlbumList2.view',
-    summary:
-        'Returns a list of random, newest, highest rated etc. albums. Similar to getAlbumList, but organizes music according to ID3 tags.',
+    path: 'getAlbumList.view',
+    summary: 'Returns a list of random, newest, highest rated etc. albums.',
 });
 
 const requestSchema = z.object({
@@ -29,18 +28,18 @@ const requestSchema = z.object({
     ]),
 });
 
-export const getAlbumList2 = {
+export const getAlbumList = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
         response: z.object({
-            albumList2: albumList2Schema.ss['1.16.1'],
+            albumList2: albumListSchema.ss['1.16.1'],
         }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            albumList2: albumList2Schema.os['1'],
+            albumList2: albumListSchema.os['1'],
         }),
         ...properties,
     }),

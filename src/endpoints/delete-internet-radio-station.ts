@@ -1,26 +1,25 @@
 import { z } from 'zod';
-import { albumInfoSchema } from '@/responses/album-info.js';
+import { emptyResponseSchema } from '@/open-subsonic-types.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
-    path: 'getAlbumInfo2.view',
-    summary:
-        'Returns album info. Similar to getAlbumInfo, but organizes music according to ID3 tags.',
+    path: 'deleteInternetRadioStation.view',
+    summary: 'Deletes an existing internet radio station.',
 });
 
 const requestSchema = z.object({
     id: z.string(),
 });
 
-export const getAlbumInfo2 = {
+export const deleteInternetRadioStation = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
-        response: albumInfoSchema.ss['1.16.1'],
+        response: emptyResponseSchema,
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
-        response: albumInfoSchema.ss['1.16.1'],
+        response: emptyResponseSchema,
         ...properties,
     }),
 };
