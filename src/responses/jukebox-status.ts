@@ -4,7 +4,7 @@ const schema = z.object({
     currentIndex: z.number(),
     gain: z.number(),
     playing: z.boolean(),
-    position: z.number(),
+    position: z.number().optional(),
 });
 
 export const jukeboxStatusSchema = {

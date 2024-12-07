@@ -19,7 +19,7 @@ export const getShares = {
     ...createEndpoint.os('OS.1', {
         request: emptyRequestSchema,
         response: z.object({
-            shares: sharesSchema.ss['1.16.1'],
+            shares: sharesSchema.os['1'],
         }),
         ...properties,
     }),

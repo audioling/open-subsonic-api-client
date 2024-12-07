@@ -13,8 +13,14 @@ import { z } from 'zod';
 export const errorSchema = {
     ss: {
         '1.16.1': z.object({
-            code: z.number(),
-            message: z.string().optional(),
+            code: z.number().describe('The error code'),
+            helpUrl: z
+                .string()
+                .optional()
+                .describe(
+                    'A URL (documentation, configuration, etc) which may provide additional context for the error)',
+                ),
+            message: z.string().optional().describe('The optional error message'),
         }),
     },
 };

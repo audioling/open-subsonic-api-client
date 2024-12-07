@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { randomSongsSchema } from '@/responses/random-songs.js';
+import { songsSchema } from '@/responses/songs.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
@@ -19,14 +19,14 @@ export const getRandomSongs = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
         response: z.object({
-            randomSongs: randomSongsSchema.ss['1.16.1'],
+            randomSongs: songsSchema.ss['1.16.1'],
         }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            randomSongs: randomSongsSchema.os['1'],
+            randomSongs: songsSchema.os['1'],
         }),
         ...properties,
     }),

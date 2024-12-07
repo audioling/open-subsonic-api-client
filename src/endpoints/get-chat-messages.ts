@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { chatMessageSchema } from '@/responses/chat-message.js';
+import { chatMessagesSchema } from '@/responses/chat-messages.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
@@ -17,16 +17,12 @@ const requestSchema = z.object({
 export const getChatMessages = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
-        response: z.object({
-            chatMessages: z.array(chatMessageSchema.ss['1.16.1']),
-        }),
+        response: chatMessagesSchema.ss['1.16.1'],
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
-        response: z.object({
-            chatMessages: z.array(chatMessageSchema.ss['1.16.1']),
-        }),
+        response: chatMessagesSchema.ss['1.16.1'],
         ...properties,
     }),
 };

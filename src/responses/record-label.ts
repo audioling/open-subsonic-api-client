@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-const recordLabelOpenSubsonicSchema = z.object({
+const schema = z.object({
     name: z.string(),
 });
 
 export const recordLabelSchema = {
     os: {
-        '1': recordLabelOpenSubsonicSchema,
+        '1': schema,
     },
 };

@@ -23,7 +23,7 @@ export const getPodcasts = {
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            podcasts: podcastsSchema.ss['1.16.1'],
+            podcasts: podcastsSchema.os['1'],
         }),
         ...properties,
     }),
