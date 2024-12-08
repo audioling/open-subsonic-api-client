@@ -10,7 +10,7 @@ const properties = endpointProperties({
 const requestSchema = z.object({
     count: z.number().optional(),
     genre: z.string(),
-    musicFolderId: z.string().optional(),
+    musicFolderId: z.number().optional(),
     offset: z.number().optional(),
 });
 

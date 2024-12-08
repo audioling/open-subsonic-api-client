@@ -7,7 +7,7 @@ const schema = z.object({
     coverArtRole: z.boolean(),
     downloadRole: z.boolean(),
     email: z.string().optional(),
-    folder: z.string().array(),
+    folder: z.number().array(),
     jukeboxRole: z.boolean(),
     maxBitRate: z.number().optional(),
     playlistRole: z.boolean(),

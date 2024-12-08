@@ -10,7 +10,7 @@ const properties = endpointProperties({
 const requestSchema = z.object({
     ifModifiedSince: z.string().optional(),
     musicFolderId: z
-        .string()
+        .number()
         .optional()
         .describe(
             'If specified, only return a result if the artist collection has changed since the given time (in milliseconds since 1 Jan 1970).',

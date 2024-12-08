@@ -8,7 +8,7 @@ const properties = endpointProperties({
 });
 
 const requestSchema = z.object({
-    musicFolderId: z.string().optional(),
+    musicFolderId: z.number().optional(),
 });
 
 export const getStarred = {

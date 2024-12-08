@@ -13,7 +13,7 @@ const requestSchema = z.object({
     albumOffset: z.number().optional().default(0),
     artistCount: z.number().optional().default(20),
     artistOffset: z.number().optional().default(0),
-    musicFolderId: z.string().optional(),
+    musicFolderId: z.number().optional(),
     query: z.string().optional(),
     songCount: z.number().optional().default(20),
     songOffset: z.number().optional().default(0),

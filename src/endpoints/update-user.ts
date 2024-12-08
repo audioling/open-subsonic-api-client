@@ -31,7 +31,7 @@ const requestSchema = z.object({
             'The maximum bit rate (in Kbps) for the user. Audio streams of higher bit rates are automatically downsampled to this bit rate. Legal values: 0 (no limit), 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320.',
         ),
     musicFolderId: z
-        .string()
+        .number()
         .array()
         .optional()
         .describe(
