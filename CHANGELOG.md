@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.1.0](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.4...v3.1.0) (2024-12-17)
+
+
+### Features
+
+* add explicitStatus to child response ([c571359](https://github.com/audioling/open-subsonic-api-client/commit/c571359fa9484e516fab658bae4d0ae4d05a2321))
+* add openapi spec ([053d7c7](https://github.com/audioling/open-subsonic-api-client/commit/053d7c7dd017e4f94649888287847f88404ed8fa))
+* add remaining missing endpoints ([37f69e1](https://github.com/audioling/open-subsonic-api-client/commit/37f69e18d3f2fc201193b8a98b3f90c085730594))
+
+
+### Bug Fixes
+
+* align response types to updated OS spec ([badd487](https://github.com/audioling/open-subsonic-api-client/commit/badd487e86e6ca4e951f9ecbfefc25aa239acf1a))
+* change all music folder types from string -&gt; number ([640a878](https://github.com/audioling/open-subsonic-api-client/commit/640a87884f2e29d89022bc46d16691fa18d8c4b5))
+
 ## [3.0.4](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.3...v3.0.4) (2024-11-04)
 
 
