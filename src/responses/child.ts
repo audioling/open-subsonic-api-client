@@ -57,6 +57,7 @@ export const childSchema = {
             displayAlbumArtist: z.string().optional(),
             displayArtist: z.string().optional(),
             displayComposer: z.string().optional(),
+            explicitStatus: z.enum(['explicit', 'clean']).optional(),
             genres: itemGenreSchema.os['1'].array().optional(),
             mediaType: z.string().optional(),
             moods: z.string().array().optional(),
