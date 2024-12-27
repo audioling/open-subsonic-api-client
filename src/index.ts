@@ -254,7 +254,7 @@ export const initOpenSubsonicApiClient = (
 
             try {
                 const result = await axiosClient.request<
-                    z.infer<(typeof subsonicResponseSchema.ss)['1.16.1']>
+                    z.infer<(typeof subsonicResponseSchema.os)['1']>
                 >({
                     data: body,
                     headers,
@@ -271,7 +271,7 @@ export const initOpenSubsonicApiClient = (
                 });
 
                 return {
-                    body: result.data['subsonic-response'],
+                    body: result.data,
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     headers: new Headers((result.headers as any).toJSON()),
                     status: result.status,
