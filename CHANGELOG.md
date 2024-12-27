@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.0.0](https://github.com/audioling/open-subsonic-api-client/compare/v3.1.0...v4.0.0) (2024-12-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* return raw response from api client
+
+### Features
+
+* return raw response from api client ([0c4563d](https://github.com/audioling/open-subsonic-api-client/commit/0c4563dcfed0ebf91aa44e259c47e40d9eb27924))
+
+
+### Bug Fixes
+
+* remove explicit auth params from ping endpoint ([d021b77](https://github.com/audioling/open-subsonic-api-client/commit/d021b77cf97d9981a86e3a3ae0b7d2f7e1b70477))
+* wrap all endpoints in subsonic-response object ([5b5e449](https://github.com/audioling/open-subsonic-api-client/commit/5b5e4494defbcb3f575ad3bebdc00d6b6c08773e))
+
 ## [3.1.0](https://github.com/audioling/open-subsonic-api-client/compare/v3.0.4...v3.1.0) (2024-12-17)
 
 
