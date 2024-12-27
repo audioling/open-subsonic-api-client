@@ -1,7 +1,7 @@
 import { initContract } from '@ts-rest/core';
 import qs from 'qs';
 import type { ZodType } from 'zod';
-import { type AnyZodObject } from 'zod';
+import { type AnyZodObject, z } from 'zod';
 import { OpenSubsonicApiVersions, SubsonicApiVersions } from '@/open-subsonic-types.js';
 import {
     baseResponseOpenSubsonicSchema,
@@ -110,7 +110,11 @@ const createOsEndpoint = <
                     method: 'GET',
                     query: properties.request,
                     responses: {
-                        200: baseResponseOpenSubsonicSchema.merge(properties.response),
+                        200: z.object({
+                            'subsonic-response': baseResponseOpenSubsonicSchema.merge(
+                                properties.response,
+                            ),
+                        }),
                     },
                     ...properties,
                 }),
@@ -119,7 +123,11 @@ const createOsEndpoint = <
                     contentType: 'application/x-www-form-urlencoded',
                     method: 'POST',
                     responses: {
-                        200: baseResponseOpenSubsonicSchema.merge(properties.response),
+                        200: z.object({
+                            'subsonic-response': baseResponseOpenSubsonicSchema.merge(
+                                properties.response,
+                            ),
+                        }),
                     },
                     ...properties,
                 }),
