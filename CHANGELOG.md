@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/audioling/open-subsonic-api-client/compare/v4.0.0...v4.0.1) (2024-12-31)
+
+
+### Bug Fixes
+
+* fix array parameter parsing on endpoints ([a2bf0fc](https://github.com/audioling/open-subsonic-api-client/commit/a2bf0fc7470b412070e0d051bd66092eb516f725))
+* handle Content-Type header on api client based on endpoint ([7a48de0](https://github.com/audioling/open-subsonic-api-client/commit/7a48de0b83ae020a7ef0f115ad92de1c4a0621e4))
+
 ## [4.0.0](https://github.com/audioling/open-subsonic-api-client/compare/v3.1.0...v4.0.0) (2024-12-27)
 
 
