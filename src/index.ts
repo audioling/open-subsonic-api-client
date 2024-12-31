@@ -238,7 +238,7 @@ export const initOpenSubsonicApiClient = (
     }
 
     return initClient(initOpenSubsonicContract(), {
-        api: async ({ path, method, headers, body, fetchOptions }) => {
+        api: async ({ path, method, headers, body, fetchOptions, contentType }) => {
             const { params, path: api } = parsePath(path);
 
             const authParams: Record<string, string> = {
@@ -257,7 +257,10 @@ export const initOpenSubsonicApiClient = (
                     z.infer<(typeof subsonicResponseSchema.os)['1']>
                 >({
                     data: body,
-                    headers,
+                    headers: {
+                        ...headers,
+                        'Content-Type': contentType ?? 'application/json',
+                    },
                     method: method,
                     params: {
                         c: clientName,
@@ -290,9 +293,6 @@ export const initOpenSubsonicApiClient = (
                 }
                 throw e;
             }
-        },
-        baseHeaders: {
-            'Content-Type': 'application/json',
         },
         baseUrl: '',
     });
