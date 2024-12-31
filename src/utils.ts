@@ -11,7 +11,7 @@ import {
 export function parsePath(fullPath: string) {
     const [path, params] = fullPath.split('?');
 
-    const parsedParams = qs.parse(params);
+    const parsedParams = qs.parse(params, { arrayLimit: 99999, parameterLimit: 99999 });
 
     const notNilParams: Record<string, string> = {};
 
