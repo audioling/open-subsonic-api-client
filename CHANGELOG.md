@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.2](https://github.com/audioling/open-subsonic-api-client/compare/v4.0.1...v4.0.2) (2025-01-05)
+
+
+### Bug Fixes
+
+* fix getSongsByGenre response type ([c8a78fe](https://github.com/audioling/open-subsonic-api-client/commit/c8a78fed91a83c78125a017a06a867002b6a8f11))
+
 ## [4.0.1](https://github.com/audioling/open-subsonic-api-client/compare/v4.0.0...v4.0.1) (2024-12-31)
 
 
