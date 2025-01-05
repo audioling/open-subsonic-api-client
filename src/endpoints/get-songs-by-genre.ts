@@ -18,14 +18,14 @@ export const getSongsByGenre = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
         response: z.object({
-            songs: songsByGenreSchema.ss['1.16.1'],
+            songsByGenre: songsByGenreSchema.ss['1.16.1'],
         }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
         response: z.object({
-            songs: songsByGenreSchema.os['1'],
+            songsByGenre: songsByGenreSchema.os['1'],
         }),
         ...properties,
     }),
