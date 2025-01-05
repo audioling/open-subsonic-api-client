@@ -1,6 +1,6 @@
 {
     "name": "@audioling/open-subsonic-api-client",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "private": false,
     "license": "MIT",
     "type": "module",
