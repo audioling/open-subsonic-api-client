@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { emptyResponseSchema } from '@/open-subsonic-types.js';
+import { playlistWithSongsSchema } from '@/responses/playlist-with-songs.js';
 import { createEndpoint, endpointProperties } from '@/utils.js';
 
 const properties = endpointProperties({
@@ -16,12 +16,16 @@ const requestSchema = z.object({
 export const createPlaylist = {
     ...createEndpoint.ss('SS.1.16.1', {
         request: requestSchema,
-        response: emptyResponseSchema,
+        response: z.object({
+            playlist: playlistWithSongsSchema.ss['1.16.1'],
+        }),
         ...properties,
     }),
     ...createEndpoint.os('OS.1', {
         request: requestSchema,
-        response: emptyResponseSchema,
+        response: z.object({
+            playlist: playlistWithSongsSchema.os['1'],
+        }),
         ...properties,
     }),
 };
