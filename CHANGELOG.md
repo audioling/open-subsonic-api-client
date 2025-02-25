@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.3](https://github.com/audioling/open-subsonic-api-client/compare/v4.0.2...v4.0.3) (2025-02-25)
+
+
+### Bug Fixes
+
+* add missing response to createPlaylist ([b98bdd9](https://github.com/audioling/open-subsonic-api-client/commit/b98bdd942f7f6ea2fff51a621c4d84c21f0a52a4))
+
 ## [4.0.2](https://github.com/audioling/open-subsonic-api-client/compare/v4.0.1...v4.0.2) (2025-01-05)
 
 
